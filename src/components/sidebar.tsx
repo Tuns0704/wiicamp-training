@@ -1,22 +1,19 @@
 import React, { useEffect } from 'react';
-import { routes } from '../constants/app-routes';
-import { NavLink, Link } from 'react-router-dom';
-import LogoutIcon from './icons/logout';
+import { Link, NavLink } from 'react-router-dom';
 import { MenuIcon } from 'lucide-react';
 import {
   Sheet,
-  SheetClose,
   SheetContent,
-  SheetDescription,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '@/components/ui/sheet';
-import { Button } from '@/components/ui/button';
-import { useDeviceStore } from '../stores/device';
+} from './ui/sheet';
+import routes from '../constants/app-routes';
+import useDeviceStore from '../stores/device';
 
-const RenderSideItem = () => {
+import LogoutIcon from './icons/logout';
+
+function RenderSideItem() {
   return (
     <>
       <ul className="block">
@@ -49,9 +46,9 @@ const RenderSideItem = () => {
       </div>
     </>
   );
-};
+}
 
-const Sidebar = () => {
+function Sidebar() {
   const { isMobile, handleResize } = useDeviceStore();
 
   useEffect(() => {
@@ -91,6 +88,6 @@ const Sidebar = () => {
       )}
     </aside>
   );
-};
+}
 
 export default Sidebar;

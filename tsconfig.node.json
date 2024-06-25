@@ -9,6 +9,5 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "noEmit": true
-  },
-  "include": ["vite.config.ts", ".eslintrc.cjs", "./src", "*.ts", "*.tsx"]
+  }
 }

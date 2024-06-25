@@ -1,8 +1,9 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+
 import Sidebar from '../components/sidebar';
 
-const AppContainer = () => {
+function AppContainer() {
   return (
     <div className="sm:flex bg-darkbg1 w-screen min-h-screen">
       <Sidebar />
@@ -11,6 +12,6 @@ const AppContainer = () => {
       </div>
     </div>
   );
-};
+}
 
 export default AppContainer;

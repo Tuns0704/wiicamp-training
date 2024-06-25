@@ -1,11 +1,12 @@
-import React from 'react';
-import { Suspense, lazy } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import AppContainer from '../container/app-container';
-const HomePage = lazy(() => import('../features/home-page/index'));
-import { routes } from './../constants/app-routes';
+import React, { lazy, Suspense } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-export const AppRouter = () => {
+import routes from '../constants/app-routes';
+import AppContainer from '../container/app-container';
+
+const HomePage = lazy(() => import('../features/home-page/index'));
+
+function AppRouter() {
   return (
     <Suspense fallback={<div>Waiting...</div>}>
       <Routes>
@@ -19,4 +20,6 @@ export const AppRouter = () => {
       </Routes>
     </Suspense>
   );
-};
+}
+
+export default AppRouter;

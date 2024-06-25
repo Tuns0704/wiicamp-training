@@ -1,6 +1,4 @@
-import React from 'react';
-
-const GraphIcon = () => {
+function GraphIcon() {
   return (
     <svg
       width="20"
@@ -15,6 +13,6 @@ const GraphIcon = () => {
       />
     </svg>
   );
-};
+}
 
 export default GraphIcon;

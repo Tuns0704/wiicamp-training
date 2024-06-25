@@ -1,6 +1,4 @@
-import React from 'react';
-
-const NotificationIcon = () => {
+function NotificationIcon() {
   return (
     <svg
       width="24"
@@ -15,6 +13,6 @@ const NotificationIcon = () => {
       />
     </svg>
   );
-};
+}
 
 export default NotificationIcon;

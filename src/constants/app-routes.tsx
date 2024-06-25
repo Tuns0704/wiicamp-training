@@ -1,13 +1,12 @@
 import DiscountIcon from '../components/icons/discount';
 import GraphIcon from '../components/icons/graph';
 import HomeIcon from '../components/icons/home';
-import React from 'react';
 import MessageIcon from '../components/icons/message';
 import NotificationIcon from '../components/icons/notification';
 import SettingIcon from '../components/icons/setting';
 import HomePage from '../features/home-page';
 
-export const routes = [
+const routes = [
   {
     name: 'Home',
     path: '/',
@@ -45,3 +44,5 @@ export const routes = [
     icon: <SettingIcon />,
   },
 ];
+
+export default routes;
