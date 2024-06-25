@@ -1,54 +1,26 @@
+/** @type { import("eslint").Linter.Config } */
 module.exports = {
-  root: true,
-  env: { browser: true, es2020: true },
+  env: {
+    browser: true,
+    es2021: true,
+  },
   extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:react/jsx-runtime',
-    'plugin:react-hooks/recommended',
     'airbnb',
-    'airbnb/hooks',
     'airbnb-typescript',
+    'airbnb/hooks',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
-  ignorePatterns: ['dist'],
+  overrides: [],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: './tsconfig.json',
+    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
   },
-  settings: {
-    react: { version: '18.2' },
-  },
-  plugins: ['react-refresh', 'simple-import-sort'],
+  plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true },
-    ],
-    'import/no-unresolved': 'off',
-    'import/no-absolute-path': 'off',
-    'simple-import-sort/imports': [
-      'error',
-      {
-        groups: [
-          // Packages `react` related packages come first.
-          ['^react', '^@?\\w'],
-          // Side effect imports.
-          ['^\\u0000'],
-          // Internal components, packages.
-          // eslint-disable-next-line no-useless-escape
-          ['^(@/components)(/.*|$)'],
-          ['^(@)(/.*|$)'],
-          ['^(/)'],
-          // Parent imports. Put `..` last.
-          ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
-          // Other relative imports. Put same-folder imports and `.` last.
-          ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
-          // Style imports.
-          ['^.+\\.(css)$', '^.+\\.(scss)$'],
-        ],
-      },
-    ],
+    'react/react-in-jsx-scope': 0,
   },
 };

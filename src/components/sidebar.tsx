@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { MenuIcon } from 'lucide-react';
 import {
@@ -17,9 +17,9 @@ function RenderSideItem() {
   return (
     <>
       <ul className="block">
-        {routes.map((item, index) => {
+        {routes.map((item) => {
           return (
-            <li key={index} className="min-h-[102px]">
+            <li key={item.name} className="min-h-[102px]">
               <NavLink to={item.path}>
                 {({ isActive }) => (
                   <div
@@ -40,7 +40,10 @@ function RenderSideItem() {
         })}
       </ul>
       <div className="p-6 sm:mt-auto">
-        <button className="p-3 sm:p-4 text-primary flex items-center gap-3 font-bold">
+        <button
+          type="submit"
+          className="p-3 sm:p-4 text-primary flex items-center gap-3 font-bold"
+        >
           <LogoutIcon /> <p className="sm:hidden text-white">Logout</p>
         </button>
       </div>
