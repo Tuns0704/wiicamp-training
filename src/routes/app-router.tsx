@@ -15,7 +15,7 @@ function AppRouter() {
           {routes.map((item) => (
             <Route key={item.name} path={item.path} element={item.path} />
           ))}
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<Navigate to="/home" replace />} />
         </Route>
       </Routes>
     </Suspense>

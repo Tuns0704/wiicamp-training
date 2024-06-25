@@ -13,22 +13,31 @@ import useDeviceStore from '../stores/device';
 
 import LogoutIcon from './icons/logout';
 
-function RenderSideItem() {
+function RenderSideItem({ smallHeight }: { smallHeight: boolean }) {
   return (
     <>
-      <ul className="block">
+      <ul className="block w-full">
         {routes.map((item) => {
           return (
-            <li key={item.name} className="min-h-[102px]">
+            <li
+              key={item.name}
+              className={`w-fit ml-auto ${smallHeight ? 'max-h-[102px]' : 'sm:min-h-[102px]'} `}
+            >
               <NavLink to={item.path}>
                 {({ isActive }) => (
                   <div
-                    className={`py-3 px-3 ${isActive ? 'bg-darkbgbase rounded-xl' : ''}`}
+                    className={`relative py-3 pl-3 pr-5 ${isActive ? 'bg-darkbgbase rounded-l-xl' : ''}`}
                   >
+                    {isActive && (
+                      <>
+                        <div className="absolute size-4 -top-4 right-0 bg-darkbgbase before:content-[''] before:size-3 before:bg-darkbg2 before:w-full before:h-full before:absolute before:rounded-br-full"></div>
+                        <div className="absolute size-4 -bottom-4 right-0 bg-darkbgbase before:content-[''] before:size-3 before:bg-darkbg2 before:w-full before:h-full before:absolute before:rounded-tr-full"></div>
+                      </>
+                    )}
                     <div
                       className={`p-4 flex items-center gap-3 justify-center ${isActive ? 'text-white bg-primary rounded-lg font-bold' : 'text-primary'}`}
                     >
-                      <div className="flex gap-2 w-full">
+                      <div className="flex gap-2">
                         {item.icon} <p className="sm:hidden">{item.name}</p>
                       </div>
                     </div>
@@ -39,20 +48,17 @@ function RenderSideItem() {
           );
         })}
       </ul>
-      <div className="p-6 sm:mt-auto">
-        <button
-          type="submit"
-          className="p-3 sm:p-4 text-primary flex items-center gap-3 font-bold"
-        >
+      <div className="p-4 sm:mt-auto">
+        <div className="p-3 sm:p-4 text-primary flex items-center justify-center gap-3 font-bold">
           <LogoutIcon /> <p className="sm:hidden text-white">Logout</p>
-        </button>
+        </div>
       </div>
     </>
   );
 }
 
 function Sidebar() {
-  const { isMobile, handleResize } = useDeviceStore();
+  const { smallWidth, smallHeight, handleResize } = useDeviceStore();
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
@@ -70,7 +76,7 @@ function Sidebar() {
           alt=""
         />
       </Link>
-      {isMobile ? (
+      {smallWidth ? (
         <Sheet>
           <SheetTrigger asChild>
             <div className="py-6">
@@ -82,12 +88,12 @@ function Sidebar() {
               <SheetTitle className="text-primary text-center">Menu</SheetTitle>
             </SheetHeader>
             <div className="mt-10">
-              <RenderSideItem />
+              <RenderSideItem smallHeight={smallHeight} />
             </div>
           </SheetContent>
         </Sheet>
       ) : (
-        <RenderSideItem />
+        <RenderSideItem smallHeight={smallHeight} />
       )}
     </aside>
   );
