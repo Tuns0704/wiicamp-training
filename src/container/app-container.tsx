@@ -1,12 +1,16 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import Sidebar from '../components/sidebar';
 
-export const AppContainer = () => {
+const AppContainer = () => {
   return (
-    <div className="bg-white bg-opacity-95">
-      <div className="sm:mx-20 mx-5 font-opensans">
+    <div className="sm:flex bg-darkbg1 w-screen min-h-screen">
+      <Sidebar />
+      <div className="w-full p-6">
         <Outlet />
       </div>
     </div>
   );
 };
+
+export default AppContainer;
