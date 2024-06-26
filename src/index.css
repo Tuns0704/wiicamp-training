@@ -4,11 +4,20 @@
 
 @layer base {
   :root {
-    --darkbg1: 37 40 54;
-    --darkbg2: 31 29 43;
-    --darkbgbase: 57 60 73;
+    --dark-bg-primary: 37 40 54;
+    --dark-bg-secondary: 31 29 43;
+    --dark-bg-base: 45 48 62;
+    --dark-line-base: 57 60 73;
     --primary: 234 124 105;
     --secondary: 146 136 224;
+    --text-lighter: 224 230 233;
+    --text-light: 171 187 194;
+    --text-dark: 59 81 98;
+    --text-gray: 136 152 152;
+  }
+
+  html {
+    font-family: 'Barlow', system-ui, sans-serif;
   }
 }
 

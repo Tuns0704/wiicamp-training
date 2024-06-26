@@ -18,11 +18,16 @@ module.exports = {
     },
     extend: {
       colors: {
-        darkbg1: 'rgb(var(--darkbg1) / <alpha-value>)',
-        darkbg2: 'rgb(var(--darkbg2) / <alpha-value>)',
-        darkbgbase: 'rgb(var(--darkbgbase) / <alpha-value>)',
+        darkbg1: 'rgb(var(--dark-bg-primary) / <alpha-value>)',
+        darkbg2: 'rgb(var(--dark-bg-secondary) / <alpha-value>)',
+        darkbgbase: 'rgb(var(--dark-bg-base) / <alpha-value>)',
+        darklinebase: 'rgb(var(--dark-line-base) / <alpha-value>)',
         primary: 'rgb(var(--primary) / <alpha-value>)',
         secondary: 'rgb(var(--secondary) / <alpha-value>)',
+        textlighter: 'rgb(var(--text-lighter) / <alpha-value>)',
+        textlight: 'rgb(var(--text-light) / <alpha-value>)',
+        textdark: 'rgb(var(--text-dark) / <alpha-value>)',
+        textgray: 'rgb(var(--text-gray) / <alpha-value>)',
       },
       keyframes: {
         'accordion-down': {
@@ -39,6 +44,9 @@ module.exports = {
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
     },
+    fontFamily: {
+      barlow: ['Barlow', 'sans-serif'],
+    },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), require('tailwind-scrollbar')],
 };

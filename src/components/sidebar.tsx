@@ -13,29 +13,26 @@ import useDeviceStore from '../stores/device';
 
 import LogoutIcon from './icons/logout';
 
-function RenderSideItem({ smallHeight }: { smallHeight: boolean }) {
+function RenderSideItem() {
   return (
     <>
-      <ul className="block w-full">
+      <ul className="block w-full h-fit">
         {routes.map((item) => {
           return (
-            <li
-              key={item.name}
-              className={`w-fit ml-auto ${smallHeight ? 'max-h-[102px]' : 'sm:min-h-[102px]'} `}
-            >
+            <li key={item.name} className="w-full ml-2 h-[calc(100%-85%)]">
               <NavLink to={item.path}>
                 {({ isActive }) => (
                   <div
-                    className={`relative py-3 pl-3 pr-5 ${isActive ? 'bg-darkbgbase rounded-l-xl' : ''}`}
+                    className={`relative py-3 pl-3 pr-5 ${isActive ? 'bg-darklinebase rounded-l-xl' : ''}`}
                   >
                     {isActive && (
                       <>
-                        <div className="absolute size-4 -top-4 right-0 bg-darkbgbase before:content-[''] before:size-3 before:bg-darkbg2 before:w-full before:h-full before:absolute before:rounded-br-full"></div>
-                        <div className="absolute size-4 -bottom-4 right-0 bg-darkbgbase before:content-[''] before:size-3 before:bg-darkbg2 before:w-full before:h-full before:absolute before:rounded-tr-full"></div>
+                        <div className="absolute size-4 -top-4 right-0 sm:right-2 bg-darklinebase before:content-[''] before:size-3 before:bg-darkbg2 before:w-full before:h-full before:absolute before:rounded-br-full"></div>
+                        <div className="absolute size-4 -bottom-4 right-0 sm:right-2 bg-darklinebase before:content-[''] before:size-3 before:bg-darkbg2 before:w-full before:h-full before:absolute before:rounded-tr-full"></div>
                       </>
                     )}
                     <div
-                      className={`p-4 flex items-center gap-3 justify-center ${isActive ? 'text-white bg-primary rounded-lg font-bold' : 'text-primary'}`}
+                      className={`p-4 sm:w-fit flex items-center gap-3 justify-center ${isActive ? 'text-white bg-primary rounded-lg font-bold' : 'text-primary'}`}
                     >
                       <div className="flex gap-2">
                         {item.icon} <p className="sm:hidden">{item.name}</p>
@@ -48,8 +45,8 @@ function RenderSideItem({ smallHeight }: { smallHeight: boolean }) {
           );
         })}
       </ul>
-      <div className="p-4 sm:mt-auto">
-        <div className="p-3 sm:p-4 text-primary flex items-center justify-center gap-3 font-bold">
+      <div className="flex my-6 justify-center sm:mt-auto">
+        <div className="sm:p-5 text-primary flex items-center justify-center gap-3 font-bold">
           <LogoutIcon /> <p className="sm:hidden text-white">Logout</p>
         </div>
       </div>
@@ -58,7 +55,7 @@ function RenderSideItem({ smallHeight }: { smallHeight: boolean }) {
 }
 
 function Sidebar() {
-  const { smallWidth, smallHeight, handleResize } = useDeviceStore();
+  const { isMobile, handleResize } = useDeviceStore();
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
@@ -68,15 +65,15 @@ function Sidebar() {
   }, [handleResize]);
 
   return (
-    <aside className="sm:w-[104px] px-4 sm:px-0 flex sm:flex-col justify-between items-center rounded-r-2xl sm:min-h-screen bg-darkbg2">
-      <Link to="/" className="py-6">
+    <aside className="w-screen sm:w-[104px] fixed top-0 left-0 overflow-hidden px-4 sm:px-0 flex sm:flex-col justify-between items-center rounded-r-2xl sm:h-screen bg-darkbg2 z-50">
+      <Link to="/" className="py-6 w-12">
         <img
           className="p-2 rounded-xl bg-primary/25"
           src="assets/home-logo.svg"
           alt=""
         />
       </Link>
-      {smallWidth ? (
+      {isMobile ? (
         <Sheet>
           <SheetTrigger asChild>
             <div className="py-6">
@@ -88,12 +85,12 @@ function Sidebar() {
               <SheetTitle className="text-primary text-center">Menu</SheetTitle>
             </SheetHeader>
             <div className="mt-10">
-              <RenderSideItem smallHeight={smallHeight} />
+              <RenderSideItem />
             </div>
           </SheetContent>
         </Sheet>
       ) : (
-        <RenderSideItem smallHeight={smallHeight} />
+        <RenderSideItem />
       )}
     </aside>
   );

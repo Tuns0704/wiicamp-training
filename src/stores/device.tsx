@@ -1,21 +1,16 @@
 import { create } from 'zustand';
 
 interface DeviceState {
-  smallWidth: boolean;
-  smallHeight: boolean;
-  setIsSmallWidth: (smallWidth: boolean) => void;
-  setIsSmallHeight: (smallHeight: boolean) => void;
+  isMobile: boolean;
+  setIsMobile: (isMobile: boolean) => void;
   handleResize: () => void;
 }
 
 const useDeviceStore = create<DeviceState>((set) => ({
-  smallWidth: window.innerWidth < 640,
-  smallHeight: window.innerHeight < 780,
-  setIsSmallWidth: (smallWidth: boolean) => set({ smallWidth }),
-  setIsSmallHeight: (smallHeight: boolean) => set({ smallHeight }),
+  isMobile: window.innerWidth < 640,
+  setIsMobile: (isMobile: boolean) => set({ isMobile }),
   handleResize: () => {
-    set({ smallWidth: window.innerWidth < 640 });
-    set({ smallHeight: window.innerHeight < 780 });
+    set({ isMobile: window.innerWidth < 640 });
   },
 }));
 
