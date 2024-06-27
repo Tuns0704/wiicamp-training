@@ -4,6 +4,7 @@ import formatCurrency from '../../helpers/format-currency';
 
 import useCartStore from '../../stores/cart';
 import CardCartItem from './cart-item';
+import EmptyCartIcon from './../../components/icons/empty-cart';
 
 const OrderCart = () => {
   const { cart } = useCartStore();
@@ -42,9 +43,16 @@ const OrderCart = () => {
           <p className="font-semibold w-1/6 text-end">Price</p>
         </div>
         <div className="flex flex-col gap-6 overflow-y-scroll scrollbar-none">
-          {cart.map((item) => {
-            return <CardCartItem key={item.id} item={item} />;
-          })}
+          {cart.length > 0 ? (
+            cart.map((item) => {
+              return <CardCartItem key={item.id} item={item} />;
+            })
+          ) : (
+            <div className="w-full text-primary min-h-64 flex flex-col gap-4 justify-center items-center">
+              <EmptyCartIcon />
+              <p className="font-medium text-3xl">Cart is empty</p>
+            </div>
+          )}
         </div>
       </div>
       <div className="">

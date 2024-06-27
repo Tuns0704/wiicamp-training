@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { MenuIcon } from 'lucide-react';
+import { MenuIcon, X } from 'lucide-react';
 import {
   Sheet,
+  SheetClose,
   SheetContent,
+  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -16,10 +18,10 @@ import LogoutIcon from './icons/logout';
 function RenderSideItem() {
   return (
     <>
-      <ul className="block w-full h-fit">
+      <ul className="block w-full h-full">
         {routes.map((item) => {
           return (
-            <li key={item.name} className="w-full ml-2 h-[calc(100%-85%)]">
+            <li key={item.name} className="w-full sm:ml-2 h-[calc(100%-85%)]">
               <NavLink to={item.path}>
                 {({ isActive }) => (
                   <div
@@ -34,9 +36,7 @@ function RenderSideItem() {
                     <div
                       className={`p-4 sm:w-fit flex items-center gap-3 justify-center ${isActive ? 'text-white bg-primary rounded-lg font-bold' : 'text-primary'}`}
                     >
-                      <div className="flex gap-2">
-                        {item.icon} <p className="sm:hidden">{item.name}</p>
-                      </div>
+                      <div className="flex gap-2">{item.icon}</div>
                     </div>
                   </div>
                 )}
@@ -45,9 +45,9 @@ function RenderSideItem() {
           );
         })}
       </ul>
-      <div className="flex my-6 justify-center sm:mt-auto">
+      <div className="flex my-6 sm:mr-2 justify-center sm:mt-auto">
         <div className="sm:p-5 text-primary flex items-center justify-center gap-3 font-bold">
-          <LogoutIcon /> <p className="sm:hidden text-white">Logout</p>
+          <LogoutIcon />
         </div>
       </div>
     </>
@@ -65,8 +65,8 @@ function Sidebar() {
   }, [handleResize]);
 
   return (
-    <aside className="w-screen sm:w-[104px] fixed top-0 left-0 overflow-hidden px-4 sm:px-0 flex sm:flex-col justify-between items-center rounded-r-2xl sm:h-screen bg-darkbg2 z-50">
-      <Link to="/" className="py-6 w-12">
+    <aside className="w-screen sm:w-[104px] fixed top-0 left-0 overflow-hidden px-4 sm:px-0 flex flex-row-reverse sm:flex-col justify-between items-center rounded-r-2xl sm:h-screen bg-darkbg2 z-50">
+      <Link to="/" className="py-6 w-12 sm:mr-2">
         <img
           className="p-2 rounded-xl bg-primary/25"
           src="assets/home-logo.svg"
@@ -80,11 +80,18 @@ function Sidebar() {
               <MenuIcon className="p-2 size-10 text-primary rounded-xl bg-primary/25" />
             </div>
           </SheetTrigger>
-          <SheetContent className="bg-darkbg2 px-1">
+          <SheetContent
+            side={'left'}
+            className="bg-darkbg2 p-0 border-none w-fit"
+          >
             <SheetHeader>
-              <SheetTitle className="text-primary text-center">Menu</SheetTitle>
+              <SheetTitle className="hidden"></SheetTitle>
+              <SheetDescription className="hidden"></SheetDescription>
             </SheetHeader>
-            <div className="mt-10">
+            <div className="flex flex-col h-full items-center">
+              <SheetClose className="my-4 p-2 size-10 text-primary rounded-xl bg-primary/25">
+                <X />
+              </SheetClose>
               <RenderSideItem />
             </div>
           </SheetContent>
