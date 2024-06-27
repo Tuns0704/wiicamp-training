@@ -1,4 +1,4 @@
-function MessageIcon() {
+const MessageIcon = () => {
   return (
     <svg
       width="24"
@@ -13,6 +13,6 @@ function MessageIcon() {
       />
     </svg>
   );
-}
+};
 
 export default MessageIcon;

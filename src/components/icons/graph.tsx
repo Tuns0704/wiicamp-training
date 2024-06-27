@@ -1,4 +1,4 @@
-function GraphIcon() {
+const GraphIcon = () => {
   return (
     <svg
       width="20"
@@ -13,6 +13,6 @@ function GraphIcon() {
       />
     </svg>
   );
-}
+};
 
 export default GraphIcon;

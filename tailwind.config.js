@@ -21,6 +21,7 @@ module.exports = {
         darkbg1: 'rgb(var(--dark-bg-primary) / <alpha-value>)',
         darkbg2: 'rgb(var(--dark-bg-secondary) / <alpha-value>)',
         darkbgbase: 'rgb(var(--dark-bg-base) / <alpha-value>)',
+        darkbgform: 'rgb(var(--dark-bg-form) / <alpha-value>)',
         darklinebase: 'rgb(var(--dark-line-base) / <alpha-value>)',
         primary: 'rgb(var(--primary) / <alpha-value>)',
         secondary: 'rgb(var(--secondary) / <alpha-value>)',

@@ -1,4 +1,4 @@
-function SettingIcon() {
+const SettingIcon = () => {
   return (
     <svg
       width="24"
@@ -13,6 +13,6 @@ function SettingIcon() {
       />
     </svg>
   );
-}
+};
 
 export default SettingIcon;

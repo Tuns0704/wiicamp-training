@@ -1,4 +1,4 @@
-function NotificationIcon() {
+const NotificationIcon = () => {
   return (
     <svg
       width="24"
@@ -13,6 +13,6 @@ function NotificationIcon() {
       />
     </svg>
   );
-}
+};
 
 export default NotificationIcon;
