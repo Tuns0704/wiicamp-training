@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Button } from '../../components/ui/button';
 import formatCurrency from '../../helpers/format-currency';
-
 import useCartStore from '../../stores/cart';
-import CardCartItem from './cart-item';
-import EmptyCartIcon from './../../components/icons/empty-cart';
+import ButtonContinuePayment from './button-continue-payment';
+import RenderListCartItem from './render-list-cart-item';
 
 const OrderCart = () => {
   const { cart } = useCartStore();
@@ -43,16 +41,7 @@ const OrderCart = () => {
           <p className="font-semibold w-1/6 text-end">Price</p>
         </div>
         <div className="flex flex-col gap-6 overflow-y-scroll scrollbar-none">
-          {cart.length > 0 ? (
-            cart.map((item) => {
-              return <CardCartItem key={item.id} item={item} />;
-            })
-          ) : (
-            <div className="w-full text-primary min-h-64 flex flex-col gap-4 justify-center items-center">
-              <EmptyCartIcon />
-              <p className="font-medium text-3xl">Cart is empty</p>
-            </div>
-          )}
+          <RenderListCartItem />
         </div>
       </div>
       <div className="">
@@ -64,9 +53,7 @@ const OrderCart = () => {
           <p className="text-textlight">Sub total</p>
           <p className="font-medium">{totalCart}</p>
         </div>
-        <Button className="w-full py-[14px] mt-[42px]">
-          Continue to Payment
-        </Button>
+        <ButtonContinuePayment totalCart={totalCart} />
       </div>
     </div>
   );

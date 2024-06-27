@@ -25,7 +25,9 @@ const CardCartItem = ({ item }: CartItemProps) => {
         <div className="w-4/6 flex gap-2 ">
           <img className="size-12" src={item.image} alt="" />
           <div>
-            <p className="font-medium">{formatForLongText(item.name)}</p>
+            <p className="font-medium text-white">
+              {formatForLongText(item.name)}
+            </p>
             <p className="font-medium text-sm text-textlight">$ {item.price}</p>
           </div>
         </div>
