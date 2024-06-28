@@ -65,7 +65,7 @@ function Sidebar() {
   }, [handleResize]);
 
   return (
-    <aside className="w-screen sm:w-[104px] fixed top-0 left-0 overflow-hidden px-4 sm:px-0 flex flex-row-reverse sm:flex-col justify-between items-center rounded-r-2xl sm:h-screen bg-darkbg2 z-50">
+    <aside className="w-screen sm:w-[104px] fixed top-0 left-0 overflow-hidden px-4 sm:px-0 flex flex-row-reverse sm:flex-col justify-between items-center sm:rounded-r-2xl sm:h-screen bg-darkbg2 z-50">
       <Link to="/" className="py-6 w-12 sm:mr-2">
         <img
           className="p-2 rounded-xl bg-primary/25"

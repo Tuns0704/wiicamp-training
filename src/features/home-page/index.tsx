@@ -1,22 +1,47 @@
 import dishes from '../../constants/dishes';
 import Header from './header';
-import OrderCart from './order-cart';
-import CardFoodItem from './food-item';
+import Cart from './carts';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import ListDishes from './list-dishes';
 
 function HomePage() {
+  const [searchParams] = useSearchParams();
+  const [foodDishes, setFoodDishes] = useState(dishes);
+
+  useEffect(() => {
+    const mealOption = searchParams.get('mealOption');
+    const typeService = searchParams.get('typeService');
+    const name = searchParams.get('name');
+
+    let filteredDishes = dishes;
+
+    if (mealOption) {
+      filteredDishes = filteredDishes.filter(
+        (dish) => dish.mealOption === mealOption
+      );
+    }
+    if (typeService) {
+      filteredDishes = filteredDishes.filter(
+        (dish) => dish.typeService === typeService
+      );
+    }
+    if (name) {
+      filteredDishes = filteredDishes.filter((dish) =>
+        dish.name.toLowerCase().includes(name.toLowerCase())
+      );
+    }
+    setFoodDishes(filteredDishes);
+  }, [searchParams]);
+
   return (
     <div className="flex flex-col lg:flex-row justify-between md:max-h-screen">
-      <div className="md:min-w-[50vw] w-full max-h-screen flex flex-col px-6 mt-6">
+      <div className="md:min-w-[60vw] w-full sm:max-h-screen max-h-[calc(100vh-90px)] flex flex-col px-6 mt-6">
         <Header />
-        <div className="w-full grid grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-5 lg:gap-7 flex-grow overflow-y-scroll scrollbar-none">
-          {dishes.map((item, index) => (
-            <CardFoodItem key={index} item={item} />
-          ))}
-        </div>
-        <div />
+        <ListDishes dishes={foodDishes} />
       </div>
-      <div className="lg:block md:min-w-[35vw]">
-        <OrderCart />
+      <div className="md:min-w-[25vw] flex flex-col gap-6 p-6 w-full text-white bg-darkbg2 min-h-[calc(100vh-200px)] max-h-[calc(100vh-95px)] sm:min-h-screen sm:max-h-screen">
+        <Cart />
       </div>
     </div>
   );

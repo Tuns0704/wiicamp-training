@@ -1,16 +1,11 @@
-import TrashIcon from '../../components/icons/trash';
-import useCartStore from '../../stores/cart';
-import formatForLongText from '../../helpers/format-for-long-text';
-import formatCurrency from '../../helpers/format-currency';
+import TrashIcon from '../../../components/icons/trash';
+import useCartStore from '../../../stores/cart';
+import formatForLongText from '../../../helpers/format-for-long-text';
+import formatCurrency from '../../../helpers/format-currency';
+import { ICartItem } from '../../../types/cart-item';
 
 interface CartItemProps {
-  item: {
-    id: number;
-    name: string;
-    price: number;
-    quantity: number;
-    image: string;
-  };
+  item: ICartItem;
 }
 
 const CardCartItem = ({ item }: CartItemProps) => {
@@ -20,7 +15,7 @@ const CardCartItem = ({ item }: CartItemProps) => {
     removeFromCart(id);
   };
   return (
-    <div>
+    <div className="">
       <div className="flex items-center">
         <div className="w-4/6 flex gap-2 ">
           <img className="size-12" src={item.image} alt="" />
@@ -37,6 +32,7 @@ const CardCartItem = ({ item }: CartItemProps) => {
             className="bg-darkbgbase border focus:right-0 focus:outline-none border-darklinebase text-center size-12 rounded-lg"
             value={item.quantity}
             placeholder="0"
+            readOnly
           />
         </div>
         <div className="w-1/6">

@@ -1,16 +1,9 @@
 import { create } from 'zustand';
-
-interface CartItem {
-  id: number;
-  name: string;
-  price: number;
-  quantity: number;
-  image: string;
-}
+import { ICartItem } from '../types/cart-item';
 
 interface CartState {
-  cart: CartItem[];
-  addToCart: (item: CartItem) => void;
+  cart: ICartItem[];
+  addToCart: (item: ICartItem) => void;
   removeFromCart: (id: number) => void;
   updateQuantity: (id: number, quantity: number) => void;
 }

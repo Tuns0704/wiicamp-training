@@ -1,15 +1,17 @@
 import EmptyCartIcon from '../../components/icons/empty-cart';
-import useCartStore from '../../stores/cart';
-import CardCartItem from './cart-item';
+import { ICartItem } from '../../types/cart-item';
+import CardCartItem from './item/cart';
 
-const RenderListCartItem = () => {
-  const { cart } = useCartStore();
+interface IListCartProps {
+  cart: ICartItem[];
+}
 
+const ListCart = ({ cart }: IListCartProps) => {
   return (
     <>
       {cart.length > 0 ? (
-        cart.map((item) => {
-          return <CardCartItem key={item.id} item={item} />;
+        cart.map((item, index) => {
+          return <CardCartItem key={index} item={item} />;
         })
       ) : (
         <div className="w-full text-primary min-h-64 flex flex-col gap-4 justify-center items-center">
@@ -21,4 +23,4 @@ const RenderListCartItem = () => {
   );
 };
 
-export default RenderListCartItem;
+export default ListCart;
