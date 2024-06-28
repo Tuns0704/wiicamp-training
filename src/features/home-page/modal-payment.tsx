@@ -62,7 +62,7 @@ const ModalPayment = ({ totalCart }: ModalPaymentProps) => {
             </div>
           </div>
         </div>
-        <div className="w-full md:w-1/2 flex flex-col justify-between text-white p-6 h-screen border-r border-darklinebase">
+        <div className="w-full md:w-1/2 flex flex-col justify-between p-6 text-white gap-6 min-h-screen border-r border-darklinebase">
           <div>
             <div className=" text-transparent  rounded-xl mb-4">
               <BackIcon />
@@ -74,7 +74,7 @@ const ModalPayment = ({ totalCart }: ModalPaymentProps) => {
               <p className="text-textlight">3 payment method available</p>
             </div>
           </div>
-          <div className="h-full flex-col gap-4 pt-6">
+          <div className="h-full flex-col gap-4">
             <h2 className="text-xl font-semibold">Payment method</h2>
             <div className="flex gap-2 pt-4">
               {payment.map((item) => (
