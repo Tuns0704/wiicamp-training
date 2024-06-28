@@ -74,7 +74,7 @@ const ModalPayment = ({ totalCart }: ModalPaymentProps) => {
               <p className="text-textlight">3 payment method available</p>
             </div>
           </div>
-          <div className="h-full flex-col pt-6">
+          <div className="h-full flex-col gap-4 pt-6">
             <h2 className="text-xl font-semibold">Payment method</h2>
             <div className="flex gap-2 pt-4">
               {payment.map((item) => (
@@ -95,7 +95,43 @@ const ModalPayment = ({ totalCart }: ModalPaymentProps) => {
                 </div>
               ))}
             </div>
-            <div></div>
+            <div className="w-full flex mt-4 flex-col gap-4">
+              <div>
+                <label htmlFor="cardholdername">Cardholder Name</label>
+                <input
+                  type="text"
+                  placeholder="Levi Ackerman"
+                  className="w-full mt-2 p-[14px] border border-darklinebase bg-darkbgform rounded-lg focus:ring-0 focus:outline-none"
+                />
+              </div>
+              <div>
+                <label htmlFor="cardnumber">Card Number</label>
+                <input
+                  id="cardnumber"
+                  placeholder="2564 1421 0897 1244"
+                  type="text"
+                  className="w-full mt-2 p-[14px] border border-darklinebase bg-darkbgform rounded-lg focus:ring-0 focus:outline-none"
+                />
+              </div>
+              <div className="flex w-full gap-2">
+                <div className="w-1/2">
+                  <label htmlFor="cardholdername">Expiration Date</label>
+                  <input
+                    type="text"
+                    placeholder="02/2022"
+                    className="w-full mt-2 p-[14px] border border-darklinebase bg-darkbgform rounded-lg focus:ring-0 focus:outline-none"
+                  />
+                </div>
+                <div className="w-1/2">
+                  <label htmlFor="cardholdername">CVV</label>
+                  <input
+                    type="password"
+                    placeholder="&#9679;&#9679;&#9679;"
+                    className="w-full mt-2 p-[14px] border border-darklinebase bg-darkbgform rounded-lg focus:ring-0 focus:outline-none"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
           <div className="w-full flex gap-4">
             <button className="w-1/2 py-[14px] border border-primary rounded-lg text-primary font-semibold">
