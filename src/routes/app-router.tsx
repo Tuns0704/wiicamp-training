@@ -1,21 +1,27 @@
-import { lazy, Suspense } from 'react';
+import { Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import routes from '../constants/app-routes';
 import AppContainer from '../container/app-container';
-
-const HomePage = lazy(() => import('../features/home-page/index'));
+import NotFound from '../features/404-not-found-page';
+import Loading from './../components/loading';
 
 function AppRouter() {
   return (
-    <Suspense fallback={<div>Waiting...</div>}>
+    <Suspense
+      fallback={
+        <div className="h-screen w-screen">
+          <Loading />
+        </div>
+      }
+    >
       <Routes>
         <Route path="/" element={<AppContainer />}>
-          <Route path="" element={<HomePage />} />
           {routes.map((item) => (
-            <Route key={item.name} path={item.path} element={item.path} />
+            <Route key={item.name} path={item.path} element={item.element} />
           ))}
-          <Route path="*" element={<Navigate to="/home" replace />} />
+          <Route path="not-found" element={<NotFound />} />
+          <Route path="*" element={<Navigate to="/not-found" replace />} />
         </Route>
       </Routes>
     </Suspense>

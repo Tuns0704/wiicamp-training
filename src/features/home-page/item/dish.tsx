@@ -19,8 +19,8 @@ function CardFoodItem({ item }: CardItemProps) {
     cartStoreActions.addToCart(itemInCart);
   };
   return (
-    <div className="group flex h-full max-h-72 w-full relative flex-col gap-4 items-center  before:content-[''] before:w-full before:bg-dark-bg2 before:h-5/6 before:-bottom-0 before:absolute before:rounded-2xl mb-3">
-      <div className="relative">
+    <div className="flex h-full max-h-72 w-full relative flex-col gap-4 items-center  before:content-[''] before:w-full before:bg-dark-bg2 before:h-5/6 before:-bottom-0 before:absolute before:rounded-2xl mb-3">
+      <div className="group  relative">
         <img className="size-[132px] z-10" src={item.image} alt={item.name} />
         <div
           onClick={() => handleAddToCart()}

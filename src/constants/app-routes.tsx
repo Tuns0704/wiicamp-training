@@ -1,10 +1,12 @@
+import { lazy } from 'react';
 import DiscountIcon from '../components/icons/discount';
 import GraphIcon from '../components/icons/graph';
 import HomeIcon from '../components/icons/home';
 import MessageIcon from '../components/icons/message';
 import NotificationIcon from '../components/icons/notification';
 import SettingIcon from '../components/icons/setting';
-import HomePage from '../features/home-page';
+const HomePage = lazy(() => import('../features/home-page'));
+const SettingPage = lazy(() => import('../features/setting-page'));
 
 const routes = [
   {
@@ -40,7 +42,7 @@ const routes = [
   {
     name: 'Setting',
     path: '/setting',
-    element: <HomePage />,
+    element: <SettingPage />,
     icon: <SettingIcon />,
   },
 ];

@@ -28,12 +28,12 @@ function RenderSideItem() {
                   >
                     {isActive && (
                       <>
-                        <div className="absolute size-4 -top-4 right-0 sm:right-2 bg-dark-linebase before:content-[''] before:size-3 before:bg-dark-bg2 before:w-full before:h-full before:absolute before:rounded-br-full"></div>
+                        <div className="absolute size-4 -top-4 right-0 sm:right-2 bg-dark-linebase before:content-[''] before:size-4 before:bg-dark-bg2 before:w-full before:h-full before:absolute before:rounded-br-full"></div>
                         <div className="absolute size-4 -bottom-4 right-0 sm:right-2 bg-dark-linebase before:content-[''] before:size-3 before:bg-dark-bg2 before:w-full before:h-full before:absolute before:rounded-tr-full"></div>
                       </>
                     )}
                     <div
-                      className={`p-4 sm:w-fit flex items-center gap-3 justify-center ${isActive ? 'text-white bg-primary rounded-lg font-bold' : 'text-primary'}`}
+                      className={`p-4 sm:w-fit transition-colors ease-in duration-200  flex items-center rounded-lg gap-3 justify-center ${isActive ? 'text-white bg-primary  font-bold' : 'text-primary'}`}
                     >
                       <div className="flex gap-2">{item.icon}</div>
                     </div>

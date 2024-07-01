@@ -54,7 +54,7 @@ function HomePage() {
       <div className={`${smallDeviceView && !isCartOpen ? 'hidden' : ''}`}>
         <Carts />
       </div>
-      <div className="bg-primary rounded-l-full w-20 fixed z-[99] bottom-[50%] -right-8 hover:-right-0 base:hidden">
+      <div className="bg-primary rounded-l-full w-20 fixed z-[49] bottom-[50%] -right-8 hover:-right-0 base:hidden">
         <Button
           onClick={handleToggleCartButton}
           className="rounded-l-full border-none size-16 bg-primary text-white active:bg-primary focus:bg-primary"
