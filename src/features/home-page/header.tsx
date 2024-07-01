@@ -41,7 +41,7 @@ function Header() {
 
   return (
     <>
-      <div className="flex mt-2 gap-2 sm:gap-0 sm:flex-row justify-between items-center mb-5 sm:mb-6">
+      <div className="flex mt-4 gap-2 sm:gap-0 sm:flex-row justify-between items-center mb-5 sm:mb-6">
         <div className="min-w-[164px] text-start">
           <h1 className="text-white text-lg sm:text-2xl font-semibold">
             Jaerga Restro
@@ -50,7 +50,7 @@ function Header() {
             {getFormatCurrentDate()}
           </p>
         </div>
-        <div className="flex min-w-[220px] p-[14px] bg-dark-base outline outline-dark-linebase rounded-md text-white justify-between items-center">
+        <div className="flex base:min-w-[220px] p-[14px] bg-dark-base outline outline-dark-linebase rounded-md text-white justify-between items-center">
           <div className="text-white mr-2">
             <SearchIcon />
           </div>
