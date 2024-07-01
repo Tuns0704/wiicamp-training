@@ -11,9 +11,9 @@ import {
   SheetTrigger,
 } from './ui/sheet';
 import routes from '../constants/app-routes';
-import useDeviceStore from '../stores/device';
 
 import LogoutIcon from './icons/logout';
+import { deviceStoreActions, useDeviceStore } from '../stores/device';
 
 function RenderSideItem() {
   return (
@@ -55,14 +55,15 @@ function RenderSideItem() {
 }
 
 function Sidebar() {
-  const { isMobile, handleResize } = useDeviceStore();
+  const isMobile = useDeviceStore((state) => state.isMobile);
 
   useEffect(() => {
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', deviceStoreActions.handleResize);
+
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', deviceStoreActions.handleResize);
     };
-  }, [handleResize]);
+  }, []);
 
   return (
     <aside className="w-screen sm:w-[104px] fixed top-0 left-0 overflow-hidden px-4 sm:px-0 flex flex-row-reverse sm:flex-col justify-between items-center sm:rounded-r-2xl sm:h-screen bg-darkbg2 z-50">

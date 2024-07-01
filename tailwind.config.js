@@ -18,6 +18,9 @@ module.exports = {
     },
     extend: {
       colors: {
+        dark: {
+          
+        },
         darkbg1: 'rgb(var(--dark-bg-primary) / <alpha-value>)',
         darkbg2: 'rgb(var(--dark-bg-secondary) / <alpha-value>)',
         darkbgbase: 'rgb(var(--dark-bg-base) / <alpha-value>)',
