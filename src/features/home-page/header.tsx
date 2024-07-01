@@ -1,6 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import { useCallback, useEffect, useState } from 'react';
-import { debounce } from 'lodash';
+import { useEffect, useState } from 'react';
 import getFormatCurrentDate from '../../helpers/get-format-current-date';
 import SearchIcon from '../../components/icons/search';
 import {
@@ -12,6 +11,7 @@ import {
 } from '../../components/ui/select';
 import meals from '../../constants/meals';
 import service from '../../constants/service';
+import { useDebounceCallback } from 'usehooks-ts';
 
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -33,12 +33,7 @@ function Header() {
     setSearchParams(params);
   }, [mealOption, name, typeService, setSearchParams]);
 
-  const debouncedSetName = useCallback(
-    debounce((value) => {
-      setName(value);
-    }, 500),
-    []
-  );
+  const debouncedSetName = useDebounceCallback(setName, 500);
 
   return (
     <>
