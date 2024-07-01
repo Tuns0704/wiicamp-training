@@ -1,5 +1,9 @@
 const meals = [
   {
+    name: 'All',
+    value: 'All',
+  },
+  {
     name: 'Hot Dishes',
     value: 'Hot Dishes',
   },

@@ -25,7 +25,8 @@ function Header() {
 
   useEffect(() => {
     const params = new URLSearchParams();
-    if (mealOption) params.set('mealOption', mealOption);
+    if (mealOption && mealOption !== 'All')
+      params.set('mealOption', mealOption);
     if (name) params.set('name', name);
     if (typeService && typeService !== 'All')
       params.set('typeService', typeService);
@@ -63,7 +64,7 @@ function Header() {
           />
         </div>
       </div>
-      <div className="w-full min-h-[32px] overflow-x-scroll scrollbar-none max-h-[33px] pb-[15px] flex gap-8 border-b border-dark-linebase mb-4 sm:mb-6">
+      <div className="w-full min-h-[33px] overflow-x-scroll scrollbar-none max-h-[33px] pb-[15px] flex gap-8 border-b border-dark-linebase mb-4 sm:mb-6">
         <div className="flex gap-8 ">
           {meals.map((item, index) => (
             <div
@@ -76,7 +77,7 @@ function Header() {
           ))}
         </div>
       </div>
-      <div className="min-h-[5vh] flex items-center justify-between mb-6">
+      <div className="min-h-12 max-h-12 flex items-center justify-between mb-6">
         <h2 className="text-white font-semibold">Choose Dishes</h2>
         <Select value={typeService} onValueChange={(e) => setTypeService(e)}>
           <SelectTrigger className="w-[105px] bg-dark-bg2 text-white border-2 border-dark-linebase focus:ring-0 py-3 font-medium">
