@@ -1,4 +1,5 @@
 import { PlusIcon } from 'lucide-react';
+import { useState } from 'react';
 import BackIcon from '../../components/icons/back';
 import {
   SheetClose,
@@ -8,35 +9,34 @@ import {
   SheetTitle,
 } from '../../components/ui/sheet';
 import payment from '../../constants/payment-method';
-import { useState } from 'react';
 import CheckMarkCircleIcon from '../../components/icons/checkmark-circle';
 import RenderListCartItem from './list-carts';
-import useCartStore from '../../stores/cart';
+import { useCartStore } from '../../stores/cart';
 
 interface ModalPaymentProps {
   totalCart: string;
 }
 
-const ModalPayment = ({ totalCart }: ModalPaymentProps) => {
+function ModalPayment({ totalCart }: ModalPaymentProps) {
   const { cart } = useCartStore();
   const [paymentMethod, setPaymentMethod] = useState('Credit Card');
 
   return (
     <SheetContent
-      side={'right'}
-      className="bg-darkbg2 p-0 border-none w-full sm:min-w-[80vw] lg:w-[60vw]"
+      side="right"
+      className="bg-dark-bg2 p-0 border-none w-full sm:min-w-[80vw] lg:w-[60vw]"
     >
       <SheetHeader>
-        <SheetTitle className="hidden"></SheetTitle>
-        <SheetDescription className="hidden"></SheetDescription>
+        <SheetTitle className="hidden" />
+        <SheetDescription className="hidden" />
       </SheetHeader>
       <div className="flex flex-col h-screen overflow-y-scroll md:flex-row min-w-screen">
-        <div className="w-full md:w-1/2 flex flex-col justify-between text-white p-6 h-screen border-r border-darklinebase">
+        <div className="w-full md:w-1/2 flex flex-col justify-between text-white p-6 h-screen border-r border-dark-linebase">
           <div>
             <SheetClose className="text-white rounded-xl mb-4">
               <BackIcon />
             </SheetClose>
-            <div className="flex justify-between pb-6 border-b border-darklinebase items-center">
+            <div className="flex justify-between pb-6 border-b border-dark-linebase items-center">
               <div>
                 <h1 className="text-white text-[28px] leading-8 mb-2 font-semibold">
                   Confirmation
@@ -51,7 +51,7 @@ const ModalPayment = ({ totalCart }: ModalPaymentProps) => {
           <div className="flex h-full overflow-scroll scrollbar-none pt-6 flex-col gap-4">
             <RenderListCartItem cart={cart} />
           </div>
-          <div className="pt-5 border-t border-darklinebase pb-[53px]">
+          <div className="pt-5 border-t border-dark-linebase pb-[53px]">
             <div className="mb-4 flex justify-between">
               <p className="text-textlight">Discount</p>
               <p className="font-medium">$0</p>
@@ -62,12 +62,12 @@ const ModalPayment = ({ totalCart }: ModalPaymentProps) => {
             </div>
           </div>
         </div>
-        <div className="w-full md:w-1/2 flex flex-col justify-between p-6 text-white gap-6 min-h-screen border-r border-darklinebase">
+        <div className="w-full md:w-1/2 flex flex-col justify-between p-6 text-white gap-6 min-h-screen border-r border-dark-linebase">
           <div>
             <div className=" text-transparent  rounded-xl mb-4">
               <BackIcon />
             </div>
-            <div className="pb-6 border-b border-darklinebase">
+            <div className="pb-6 border-b border-dark-linebase">
               <h1 className="text-white text-[28px] leading-8 mb-2 font-semibold">
                 Payment
               </h1>
@@ -83,7 +83,7 @@ const ModalPayment = ({ totalCart }: ModalPaymentProps) => {
                   onClick={() => {
                     setPaymentMethod(item.name);
                   }}
-                  className={` relative flex flex-col rounded-lg border py-[10px] min-w-[101px] justify-center items-center ${item.name === paymentMethod ? 'border-textlight text-white' : 'border-darklinebase text-textlight'}`}
+                  className={` relative flex flex-col rounded-lg border py-[10px] min-w-[101px] justify-center items-center ${item.name === paymentMethod ? 'border-textlight text-white' : 'border-dark-linebase text-textlight'}`}
                 >
                   <div className="w-fit h-fit">{item.icon}</div>
                   <p className="font-medium text-sm">{item.name}</p>
@@ -101,7 +101,7 @@ const ModalPayment = ({ totalCart }: ModalPaymentProps) => {
                 <input
                   type="text"
                   placeholder="Levi Ackerman"
-                  className="w-full mt-2 p-[14px] border border-darklinebase bg-darkbgform rounded-lg focus:ring-0 focus:outline-none"
+                  className="w-full mt-2 p-[14px] border border-dark-linebase bg-dark-form rounded-lg focus:ring-0 focus:outline-none"
                 />
               </div>
               <div>
@@ -110,7 +110,7 @@ const ModalPayment = ({ totalCart }: ModalPaymentProps) => {
                   id="cardnumber"
                   placeholder="2564 1421 0897 1244"
                   type="text"
-                  className="w-full mt-2 p-[14px] border border-darklinebase bg-darkbgform rounded-lg focus:ring-0 focus:outline-none"
+                  className="w-full mt-2 p-[14px] border border-dark-linebase bg-dark-form rounded-lg focus:ring-0 focus:outline-none"
                 />
               </div>
               <div className="flex w-full gap-2">
@@ -119,7 +119,7 @@ const ModalPayment = ({ totalCart }: ModalPaymentProps) => {
                   <input
                     type="text"
                     placeholder="02/2022"
-                    className="w-full mt-2 p-[14px] border border-darklinebase bg-darkbgform rounded-lg focus:ring-0 focus:outline-none"
+                    className="w-full mt-2 p-[14px] border border-dark-linebase bg-dark-form rounded-lg focus:ring-0 focus:outline-none"
                   />
                 </div>
                 <div className="w-1/2">
@@ -127,7 +127,7 @@ const ModalPayment = ({ totalCart }: ModalPaymentProps) => {
                   <input
                     type="password"
                     placeholder="&#9679;&#9679;&#9679;"
-                    className="w-full mt-2 p-[14px] border border-darklinebase bg-darkbgform rounded-lg focus:ring-0 focus:outline-none"
+                    className="w-full mt-2 p-[14px] border border-dark-linebase bg-dark-form rounded-lg focus:ring-0 focus:outline-none"
                   />
                 </div>
               </div>
@@ -145,6 +145,6 @@ const ModalPayment = ({ totalCart }: ModalPaymentProps) => {
       </div>
     </SheetContent>
   );
-};
+}
 
 export default ModalPayment;

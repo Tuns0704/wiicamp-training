@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { MenuIcon, X } from 'lucide-react';
 import {
@@ -13,7 +12,7 @@ import {
 import routes from '../constants/app-routes';
 
 import LogoutIcon from './icons/logout';
-import { deviceStoreActions, useDeviceStore } from '../stores/device';
+import { useMediaQuery } from 'usehooks-ts';
 
 function RenderSideItem() {
   return (
@@ -25,12 +24,12 @@ function RenderSideItem() {
               <NavLink to={item.path}>
                 {({ isActive }) => (
                   <div
-                    className={`relative py-3 pl-3 pr-5 ${isActive ? 'bg-darklinebase rounded-l-xl' : ''}`}
+                    className={`relative py-3 pl-3 pr-5 ${isActive ? 'bg-dark-linebase rounded-l-xl' : ''}`}
                   >
                     {isActive && (
                       <>
-                        <div className="absolute size-4 -top-4 right-0 sm:right-2 bg-darklinebase before:content-[''] before:size-3 before:bg-darkbg2 before:w-full before:h-full before:absolute before:rounded-br-full"></div>
-                        <div className="absolute size-4 -bottom-4 right-0 sm:right-2 bg-darklinebase before:content-[''] before:size-3 before:bg-darkbg2 before:w-full before:h-full before:absolute before:rounded-tr-full"></div>
+                        <div className="absolute size-4 -top-4 right-0 sm:right-2 bg-dark-linebase before:content-[''] before:size-3 before:bg-dark-bg2 before:w-full before:h-full before:absolute before:rounded-br-full"></div>
+                        <div className="absolute size-4 -bottom-4 right-0 sm:right-2 bg-dark-linebase before:content-[''] before:size-3 before:bg-dark-bg2 before:w-full before:h-full before:absolute before:rounded-tr-full"></div>
                       </>
                     )}
                     <div
@@ -55,19 +54,11 @@ function RenderSideItem() {
 }
 
 function Sidebar() {
-  const isMobile = useDeviceStore((state) => state.isMobile);
-
-  useEffect(() => {
-    window.addEventListener('resize', deviceStoreActions.handleResize);
-
-    return () => {
-      window.removeEventListener('resize', deviceStoreActions.handleResize);
-    };
-  }, []);
+  const isMobile = useMediaQuery('(max-width: 640px)');
 
   return (
-    <aside className="w-screen sm:w-[104px] fixed top-0 left-0 overflow-hidden px-4 sm:px-0 flex flex-row-reverse sm:flex-col justify-between items-center sm:rounded-r-2xl sm:h-screen bg-darkbg2 z-50">
-      <Link to="/" className="py-6 w-12 sm:mr-2">
+    <aside className="w-screen sm:w-[104px] fixed top-0 left-0 overflow-hidden px-4 sm:px-0 flex flex-row-reverse sm:flex-col justify-between items-center sm:rounded-r-2xl sm:h-screen bg-dark-bg2 z-50">
+      <Link to="/" className="sm:py-6 w-12 sm:mr-2">
         <img
           className="p-2 rounded-xl bg-primary/25"
           src="assets/home-logo.svg"
@@ -83,7 +74,7 @@ function Sidebar() {
           </SheetTrigger>
           <SheetContent
             side={'left'}
-            className="bg-darkbg2 p-0 border-none w-fit"
+            className="bg-dark-bg2 p-0 border-none w-fit"
           >
             <SheetHeader>
               <SheetTitle className="hidden"></SheetTitle>

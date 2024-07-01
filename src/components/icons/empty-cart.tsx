@@ -1,4 +1,4 @@
-const EmptyCartIcon = () => {
+function EmptyCartIcon() {
   return (
     <svg
       className="svg-icon"
@@ -18,6 +18,6 @@ const EmptyCartIcon = () => {
       />
     </svg>
   );
-};
+}
 
 export default EmptyCartIcon;

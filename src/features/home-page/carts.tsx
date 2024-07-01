@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import formatCurrency from '../../helpers/format-currency';
-import useCartStore from '../../stores/cart';
+import { useCartStore } from '../../stores/cart';
 import ModalPayment from './modal-payment';
 import RenderListCartItem from './list-carts';
 import service from '../../constants/service';
 import { Button } from '../../components/ui/button';
 import { Sheet, SheetTrigger } from '../../components/ui/sheet';
 
-const Cart = () => {
+function Carts() {
   const { cart } = useCartStore();
   const [listCart, setListCart] = useState(cart);
   const [totalCart, setTotalCart] = useState('');
@@ -40,13 +40,14 @@ const Cart = () => {
   }, [cart, selectedServiceOption]);
 
   return (
-    <>
+    <div className="base:min-w-[35vw] xl:min-w-[25vw] flex flex-col gap-6 p-6 w-full text-white bg-dark-bg2 min-h-[calc(100vh-200px)] max-h-[calc(100vh-95px)] sm:min-h-screen sm:max-h-screen">
       <h1 className="font-semibold text-xl">Order #13242</h1>
       <div className="flex gap-2">
         {service.map((item) => (
           <div
             onClick={() => handleSelectType(item.value)}
-            className={`py-[7px] hover:cursor-pointer  font-medium rounded-lg border  px-3  ${item.value === selectedServiceOption ? 'border-primary bg-primary text-white' : 'border border-darklinebase text-primary'}`}
+            key={item.value}
+            className={`py-[7px] hover:cursor-pointer  font-medium rounded-lg border  px-3  ${item.value === selectedServiceOption ? 'border-primary bg-primary text-white' : 'border border-dark-linebase text-primary'}`}
           >
             {item.name}
           </div>
@@ -71,17 +72,19 @@ const Cart = () => {
           <p className="text-textlight">Sub total</p>
           <p className="font-medium">{totalCart}</p>
         </div>
-        <div className="w-full py-[14px] mt-[42px]">
+        <div className="w-full mt-[42px]">
           <Sheet>
             <SheetTrigger asChild>
-              <Button className="w-full h-full">Continue to Payment</Button>
+              <Button className="w-full h-full py-[14px]">
+                Continue to Payment
+              </Button>
             </SheetTrigger>
             <ModalPayment totalCart={totalCart} />
           </Sheet>
         </div>
       </div>
-    </>
+    </div>
   );
-};
+}
 
-export default Cart;
+export default Carts;

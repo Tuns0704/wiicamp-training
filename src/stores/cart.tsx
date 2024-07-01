@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 import { ICartItem } from '../types/cart-item';
+import { StoreName } from './store-name';
+import { mountStoreDevtool } from 'simple-zustand-devtools';
 
 interface CartState {
   cart: ICartItem[];
@@ -8,7 +10,7 @@ interface CartState {
   updateQuantity: (id: number, quantity: number) => void;
 }
 
-const useCartStore = create<CartState>((set) => {
+export const useCartStore = create<CartState>((set) => {
   const storedCart = JSON.parse(localStorage.getItem('cart') || '[]');
 
   return {
@@ -23,11 +25,10 @@ const useCartStore = create<CartState>((set) => {
           updatedCart[existingItem].quantity += 1;
           localStorage.setItem('cart', JSON.stringify(updatedCart));
           return { cart: updatedCart };
-        } else {
-          const updatedCart = [...state.cart, item];
-          localStorage.setItem('cart', JSON.stringify(updatedCart));
-          return { cart: updatedCart };
         }
+        const updatedCart = [...state.cart, item];
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        return { cart: updatedCart };
       });
     },
     removeFromCart: (id) => {
@@ -52,4 +53,15 @@ const useCartStore = create<CartState>((set) => {
   };
 });
 
-export default useCartStore;
+export const cartStoreActions = {
+  addToCart: (item: ICartItem) => {
+    useCartStore.getState().addToCart(item);
+  },
+  removeFromCart: (id: number) => {
+    useCartStore.getState().removeFromCart(id);
+  },
+};
+
+if (import.meta.env.DEV) {
+  mountStoreDevtool(StoreName.CartStore, useCartStore);
+}

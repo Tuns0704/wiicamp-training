@@ -1,3 +1,3 @@
 export enum StoreName {
-  DeviceStore = 'DeviceStore',
+  CartStore = 'CartStore',
 }

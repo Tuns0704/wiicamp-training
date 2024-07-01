@@ -6,21 +6,21 @@ interface IListCartProps {
   cart: ICartItem[];
 }
 
-const ListCart = ({ cart }: IListCartProps) => {
+function ListCart({ cart }: IListCartProps) {
   return (
-    <>
+    <div className="flex flex-col gap-6 overflow-y-scroll scrollbar-none">
       {cart.length > 0 ? (
         cart.map((item, index) => {
-          return <CardCartItem key={index} item={item} />;
+          return <CardCartItem key={`${item.name}${index}`} item={item} />;
         })
       ) : (
-        <div className="w-full text-primary min-h-64 flex flex-col gap-4 justify-center items-center">
+        <div className="w-full text-primary min-h-64 flex flex-col justify-center items-center">
           <EmptyCartIcon />
           <p className="font-medium text-3xl">Cart is empty</p>
         </div>
       )}
-    </>
+    </div>
   );
-};
+}
 
 export default ListCart;

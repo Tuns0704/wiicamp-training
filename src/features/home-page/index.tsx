@@ -1,13 +1,18 @@
-import dishes from '../../constants/dishes';
-import Header from './header';
-import Cart from './carts';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import dishes from '../../constants/dishes';
+import Header from './header';
+import Carts from './carts';
 import ListDishes from './list-dishes';
+import { Button } from '../../components/ui/button';
+import { ShoppingCart } from 'lucide-react';
+import { useMediaQuery } from 'usehooks-ts';
 
 function HomePage() {
   const [searchParams] = useSearchParams();
   const [foodDishes, setFoodDishes] = useState(dishes);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const smallDeviceView = useMediaQuery('(max-width: 1024px)');
 
   useEffect(() => {
     const mealOption = searchParams.get('mealOption');
@@ -34,14 +39,28 @@ function HomePage() {
     setFoodDishes(filteredDishes);
   }, [searchParams]);
 
+  const handleToggleCartButton = () => {
+    setIsCartOpen(!isCartOpen);
+  };
+
   return (
-    <div className="flex flex-col lg:flex-row justify-between md:max-h-screen">
-      <div className="md:min-w-[60vw] w-full sm:max-h-screen max-h-[calc(100vh-90px)] flex flex-col px-6 mt-6">
+    <div className="relative flex flex-col base:flex-row justify-between lg:max-h-screen">
+      <div
+        className={`${smallDeviceView && isCartOpen ? 'hidden' : ''} base:min-w-[681px] 2xl:min-w-[68vw] w-full sm:max-h-screen max-h-[calc(100vh-90px)] flex flex-col px-6 sm:mt-6`}
+      >
         <Header />
         <ListDishes dishes={foodDishes} />
       </div>
-      <div className="md:min-w-[25vw] flex flex-col gap-6 p-6 w-full text-white bg-darkbg2 min-h-[calc(100vh-200px)] max-h-[calc(100vh-95px)] sm:min-h-screen sm:max-h-screen">
-        <Cart />
+      <div className={`${smallDeviceView && !isCartOpen ? 'hidden' : ''}`}>
+        <Carts />
+      </div>
+      <div className="bg-primary rounded-l-full w-20 fixed z-[99] bottom-[50%] -right-8 hover:-right-0 base:hidden">
+        <Button
+          onClick={handleToggleCartButton}
+          className="rounded-l-full border-none size-16 bg-primary text-white active:bg-primary focus:bg-primary"
+        >
+          <ShoppingCart />
+        </Button>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-const DiscountIcon = () => {
+function DiscountIcon() {
   return (
     <svg
       width="20"
@@ -13,6 +13,6 @@ const DiscountIcon = () => {
       />
     </svg>
   );
-};
+}
 
 export default DiscountIcon;

@@ -5,28 +5,22 @@ interface IListDishesProps {
   dishes: IDishItem[];
 }
 
-const ListDishes = ({ dishes }: IListDishesProps) => {
+function ListDishes({ dishes }: IListDishesProps) {
   return (
-    <>
+    <div className="overflow-y-scroll pb-8 scrollbar-none">
       {dishes.length > 0 ? (
-        <>
-          {
-            <div className="w-full grid grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-5 lg:gap-7 overflow-y-scroll scrollbar-none">
-              {dishes.map((item, index) => (
-                <CardFoodItem key={index} item={item} />
-              ))}
-            </div>
-          }
-        </>
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 base:grid-cols-3 gap-5 sm:gap-5 lg:gap-x-7 2xl:grid-cols-4 lg:gap-y-6 ">
+          {dishes.map((item, index) => (
+            <CardFoodItem key={item.name + index} item={item} />
+          ))}
+        </div>
       ) : (
-        <div className="w-full h-full flex justify-center items-center">
-          <h1 className="text-white text-3xl font-medium">
-            No dishes available
-          </h1>
+        <div className="text-primary w-full flex justify-center items-center  text-3xl font-medium">
+          No dishes available
         </div>
       )}
-    </>
+    </div>
   );
-};
+}
 
 export default ListDishes;

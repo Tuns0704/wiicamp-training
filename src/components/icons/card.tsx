@@ -1,4 +1,4 @@
-const CreditCardIcon = () => {
+function CreditCardIcon() {
   return (
     <svg
       width="30"
@@ -54,6 +54,6 @@ const CreditCardIcon = () => {
       </defs>
     </svg>
   );
-};
+}
 
 export default CreditCardIcon;

@@ -1,4 +1,4 @@
-const WalletIcon = () => {
+function WalletIcon() {
   return (
     <svg
       width="28"
@@ -52,6 +52,6 @@ const WalletIcon = () => {
       </defs>
     </svg>
   );
-};
+}
 
 export default WalletIcon;

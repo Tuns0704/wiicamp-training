@@ -1,4 +1,4 @@
-const CheckMarkCircleIcon = () => {
+function CheckMarkCircleIcon() {
   return (
     <svg
       width="16"
@@ -34,6 +34,6 @@ const CheckMarkCircleIcon = () => {
       </g>
     </svg>
   );
-};
+}
 
 export default CheckMarkCircleIcon;

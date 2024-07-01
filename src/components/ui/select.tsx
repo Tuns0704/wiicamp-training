@@ -3,7 +3,7 @@ import * as React from 'react';
 import * as SelectPrimitive from '@radix-ui/react-select';
 
 import { cn } from '../../lib/utils';
-import ArrowDownIcon from './../icons/arrow-down';
+import ArrowDownIcon from '../icons/arrow-down';
 
 const Select = SelectPrimitive.Root;
 

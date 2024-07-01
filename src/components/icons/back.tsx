@@ -1,4 +1,4 @@
-const BackIcon = () => {
+function BackIcon() {
   return (
     <svg
       width="24"
@@ -16,6 +16,6 @@ const BackIcon = () => {
       />
     </svg>
   );
-};
+}
 
 export default BackIcon;

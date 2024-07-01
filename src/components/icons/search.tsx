@@ -1,4 +1,4 @@
-const SearchIcon = () => {
+function SearchIcon() {
   return (
     <svg
       width="20"
@@ -34,6 +34,6 @@ const SearchIcon = () => {
       </g>
     </svg>
   );
-};
+}
 
 export default SearchIcon;
