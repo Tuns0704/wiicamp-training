@@ -44,9 +44,9 @@ function HomePage() {
   };
 
   return (
-    <div className="relative flex flex-col base:flex-row justify-between lg:max-h-screen">
+    <div className="relative flex flex-col lg:flex-row justify-between lg:max-h-screen">
       <div
-        className={`${smallDeviceView && isCartOpen ? 'hidden' : ''} base:min-w-[681px] 2xl:min-w-[68vw] w-full sm:max-h-screen max-h-[calc(100vh-90px)] flex flex-col px-6 sm:mt-6`}
+        className={`${smallDeviceView && isCartOpen ? 'hidden' : ''} lg:min-w-[35vw] base:min-w-[681px] xl:min-w-[60vw] w-full sm:max-h-screen max-h-[calc(100vh-90px)] flex flex-col px-6 sm:mt-6`}
       >
         <Header />
         <ListDishes dishes={foodDishes} />
@@ -54,9 +54,9 @@ function HomePage() {
       <div className={`${smallDeviceView && !isCartOpen ? 'hidden' : ''}`}>
         <Carts />
       </div>
-      <div className="bg-primary rounded-l-full w-20 fixed z-[49] bottom-[50%] -right-8 hover:-right-0 base:hidden">
+      <div className="bg-primary rounded-l-full w-20 fixed z-[50] bottom-[50%] -right-8 hover:-right-0 lg:hidden">
         <Button
-          onClick={handleToggleCartButton}
+          onClick={() => handleToggleCartButton()}
           className="rounded-l-full border-none size-16 bg-primary text-white active:bg-primary focus:bg-primary"
         >
           <ShoppingCart />

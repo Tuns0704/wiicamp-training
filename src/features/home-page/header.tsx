@@ -12,6 +12,7 @@ import {
 } from '../../components/ui/select';
 import meals from '../../constants/meals';
 import service from '../../constants/service';
+import Categories from '@/components/categories';
 
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -59,20 +60,8 @@ function Header() {
           />
         </div>
       </div>
-      <div className="w-full min-h-[33px] overflow-x-scroll scrollbar-none max-h-[33px] pb-[15px] flex gap-8 border-b border-dark-linebase mb-4 sm:mb-6">
-        <div className="flex gap-8 ">
-          {meals.map((item) => (
-            <button
-              onClick={() => setMealOption(item.value)}
-              key={`${item.value}`}
-              type="button"
-              aria-label="select meal"
-              className={`transition-all duration-300 ease-linear after:content-[""] relative min-w-fit pb-5  hover:cursor-pointer font-semibold text-sm after:transition-all after:duration-300 after:ease-linear after:w-2/3 after:h-[2px] after:absolute sm:after:-bottom-[12px] after:-bottom-[12px] after:left-0 after:rounded ${mealOption === item.value ? 'text-primary after:bg-primary' : 'text-white after:bg-dark-bg1'}`}
-            >
-              {item.name}
-            </button>
-          ))}
-        </div>
+      <div className="w-full border-b border-dark-linebase min-h-[33px] overflow-x-scroll overflow-y-clip  scrollbar-none base:mb-6">
+        <Categories mealOption={mealOption} setMealOption={setMealOption} />
       </div>
       <div className="min-h-12 max-h-12 flex items-center justify-between mb-6">
         <h2 className="text-white font-semibold">Choose Dishes</h2>

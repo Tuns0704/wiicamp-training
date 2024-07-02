@@ -40,7 +40,7 @@ function Carts() {
   }, [cart, handCalculateTotalcart, selectedServiceOption]);
 
   return (
-    <div className="base:min-w-[35vw] xl:min-w-[25vw] flex flex-col gap-6 p-6 w-full text-white bg-dark-bg2 min-h-[calc(100vh-200px)] max-h-[calc(100vh-95px)] sm:min-h-screen sm:max-h-screen">
+    <div className="lg:min-w-[40vw] base:min-w-[35vw] xl:min-w-[30vw] flex flex-col gap-6 p-6 w-full text-white bg-dark-bg2 min-h-[calc(100vh-200px)] max-h-[calc(100vh-95px)] sm:min-h-screen sm:max-h-screen">
       <h1 className="font-semibold text-xl">Order #13242</h1>
       <div className="flex gap-2">
         {service.map((item) => (
