@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import routes from '../constants/app-routes';
-import AppContainer from '../container/app-container';
-import NotFound from '../features/404-not-found-page';
-import Loading from './../components/loading';
+import routes from '@/constants/app-routes';
+import AppContainer from '@/container/app-container';
+import NotFound from '@/features/404-not-found-page';
+import Loading from '@/components/loading';
 
 function AppRouter() {
   return (

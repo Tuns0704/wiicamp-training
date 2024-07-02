@@ -1,5 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useDebounceCallback } from 'usehooks-ts';
 import getFormatCurrentDate from '../../helpers/get-format-current-date';
 import SearchIcon from '../../components/icons/search';
 import {
@@ -11,7 +12,6 @@ import {
 } from '../../components/ui/select';
 import meals from '../../constants/meals';
 import service from '../../constants/service';
-import { useDebounceCallback } from 'usehooks-ts';
 
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -61,14 +61,16 @@ function Header() {
       </div>
       <div className="w-full min-h-[33px] overflow-x-scroll scrollbar-none max-h-[33px] pb-[15px] flex gap-8 border-b border-dark-linebase mb-4 sm:mb-6">
         <div className="flex gap-8 ">
-          {meals.map((item, index) => (
-            <div
+          {meals.map((item) => (
+            <button
               onClick={() => setMealOption(item.value)}
-              key={`${item.value} + ${index}`}
+              key={`${item.value}`}
+              type="button"
+              aria-label="select meal"
               className={`transition-all duration-300 ease-linear after:content-[""] relative min-w-fit pb-5  hover:cursor-pointer font-semibold text-sm after:transition-all after:duration-300 after:ease-linear after:w-2/3 after:h-[2px] after:absolute sm:after:-bottom-[12px] after:-bottom-[12px] after:left-0 after:rounded ${mealOption === item.value ? 'text-primary after:bg-primary' : 'text-white after:bg-dark-bg1'}`}
             >
               {item.name}
-            </div>
+            </button>
           ))}
         </div>
       </div>

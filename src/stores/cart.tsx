@@ -1,7 +1,7 @@
 import { create } from 'zustand';
-import { ICartItem } from '../types/cart-item';
-import { StoreName } from './store-name';
 import { mountStoreDevtool } from 'simple-zustand-devtools';
+import StoreName from './store-name';
+import { ICartItem } from '../types/cart-item';
 
 interface CartState {
   cart: ICartItem[];

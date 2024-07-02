@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import formatCurrency from '../../helpers/format-currency';
 import { useCartStore } from '../../stores/cart';
 import ModalPayment from './modal-payment';
@@ -15,13 +15,13 @@ function Carts() {
     service[0].value
   );
 
-  const handCalculateTotalcart = () => {
+  const handCalculateTotalcart = useCallback(() => {
     let total = 0;
     cart.forEach((item) => {
       total += item.price * item.quantity;
     });
     return formatCurrency(total);
-  };
+  }, [cart]);
 
   const handleSelectType = (value: string) => {
     setSelectedServiceOption(value);
@@ -37,20 +37,22 @@ function Carts() {
     }
 
     setListCart(filteredCart);
-  }, [cart, selectedServiceOption]);
+  }, [cart, handCalculateTotalcart, selectedServiceOption]);
 
   return (
     <div className="base:min-w-[35vw] xl:min-w-[25vw] flex flex-col gap-6 p-6 w-full text-white bg-dark-bg2 min-h-[calc(100vh-200px)] max-h-[calc(100vh-95px)] sm:min-h-screen sm:max-h-screen">
       <h1 className="font-semibold text-xl">Order #13242</h1>
       <div className="flex gap-2">
         {service.map((item) => (
-          <div
+          <button
             onClick={() => handleSelectType(item.value)}
             key={item.value}
+            type="button"
+            aria-label="select service"
             className={`py-[7px] hover:cursor-pointer  font-medium rounded-lg border  px-3  ${item.value === selectedServiceOption ? 'border-primary bg-primary text-white' : 'border border-dark-linebase text-primary'}`}
           >
             {item.name}
-          </div>
+          </button>
         ))}
       </div>
       <div className="flex flex-col gap-6 overflow-y-scroll scrollbar-none">

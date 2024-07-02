@@ -1,3 +1,5 @@
-export enum StoreName {
+const enum StoreName {
   CartStore = 'CartStore',
 }
+
+export default StoreName;

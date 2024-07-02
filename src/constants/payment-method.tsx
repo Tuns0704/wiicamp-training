@@ -1,6 +1,6 @@
-import PaypalIcon from '../components/icons/paypal';
-import WalletIcon from '../components/icons/wallet';
-import CreditCardIcon from '../components/icons/card';
+import PaypalIcon from '@/components/icons/paypal';
+import WalletIcon from '@/components/icons/wallet';
+import CreditCardIcon from '@/components/icons/card';
 
 const payment = [
   {

@@ -1,17 +1,17 @@
 import { PlusIcon } from 'lucide-react';
 import { useState } from 'react';
-import BackIcon from '../../components/icons/back';
+import BackIcon from '@/components/icons/back';
 import {
   SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
-} from '../../components/ui/sheet';
-import payment from '../../constants/payment-method';
-import CheckMarkCircleIcon from '../../components/icons/checkmark-circle';
+} from '@/components/ui/sheet';
+import payment from '@/constants/payment-method';
+import CheckMarkCircleIcon from '@/components/icons/checkmark-circle';
 import RenderListCartItem from './list-carts';
-import { useCartStore } from '../../stores/cart';
+import { useCartStore } from '@/stores/cart';
 
 interface ModalPaymentProps {
   totalCart: string;
@@ -43,7 +43,11 @@ function ModalPayment({ totalCart }: ModalPaymentProps) {
                 </h1>
                 <p className="text-textlight">Orders #13242</p>
               </div>
-              <button className="bg-primary text-white p-[14px] rounded-lg">
+              <button
+                className="bg-primary text-white p-[14px] rounded-lg"
+                type="button"
+                aria-label="plus meal"
+              >
                 <PlusIcon />
               </button>
             </div>
@@ -78,11 +82,13 @@ function ModalPayment({ totalCart }: ModalPaymentProps) {
             <h2 className="text-xl font-semibold">Payment method</h2>
             <div className="flex gap-2 pt-4">
               {payment.map((item) => (
-                <div
+                <button
                   key={item.id}
                   onClick={() => {
                     setPaymentMethod(item.name);
                   }}
+                  type="button"
+                  aria-label="select payment method"
                   className={` relative flex flex-col rounded-lg border py-[10px] min-w-[101px] justify-center items-center ${item.name === paymentMethod ? 'border-textlight text-white' : 'border-dark-linebase text-textlight'}`}
                 >
                   <div className="w-fit h-fit">{item.icon}</div>
@@ -92,52 +98,70 @@ function ModalPayment({ totalCart }: ModalPaymentProps) {
                       <CheckMarkCircleIcon />
                     </div>
                   )}
-                </div>
+                </button>
               ))}
             </div>
             <div className="w-full flex mt-4 flex-col gap-4">
               <div>
-                <label htmlFor="cardholdername">Cardholder Name</label>
-                <input
-                  type="text"
-                  placeholder="Levi Ackerman"
-                  className="w-full mt-2 p-[14px] border border-dark-linebase bg-dark-form rounded-lg focus:ring-0 focus:outline-none"
-                />
+                <label htmlFor="cardholdername">
+                  Cardholder Name
+                  <input
+                    id="cardholdername"
+                    type="text"
+                    placeholder="Levi Ackerman"
+                    className="w-full mt-2 p-[14px] border border-dark-linebase bg-dark-form rounded-lg focus:ring-0 focus:outline-none"
+                  />
+                </label>
               </div>
               <div>
-                <label htmlFor="cardnumber">Card Number</label>
-                <input
-                  id="cardnumber"
-                  placeholder="2564 1421 0897 1244"
-                  type="text"
-                  className="w-full mt-2 p-[14px] border border-dark-linebase bg-dark-form rounded-lg focus:ring-0 focus:outline-none"
-                />
+                <label htmlFor="cardnumber">
+                  Card Number
+                  <input
+                    id="cardnumber"
+                    placeholder="2564 1421 0897 1244"
+                    type="text"
+                    className="w-full mt-2 p-[14px] border border-dark-linebase bg-dark-form rounded-lg focus:ring-0 focus:outline-none"
+                  />
+                </label>
               </div>
               <div className="flex w-full gap-2">
                 <div className="w-1/2">
-                  <label htmlFor="cardholdername">Expiration Date</label>
-                  <input
-                    type="text"
-                    placeholder="02/2022"
-                    className="w-full mt-2 p-[14px] border border-dark-linebase bg-dark-form rounded-lg focus:ring-0 focus:outline-none"
-                  />
+                  <label htmlFor="exp">
+                    Expiration Date
+                    <input
+                      id="exp"
+                      type="text"
+                      placeholder="02/2022"
+                      className="w-full mt-2 p-[14px] border border-dark-linebase bg-dark-form rounded-lg focus:ring-0 focus:outline-none"
+                    />
+                  </label>
                 </div>
                 <div className="w-1/2">
-                  <label htmlFor="cardholdername">CVV</label>
-                  <input
-                    type="password"
-                    placeholder="&#9679;&#9679;&#9679;"
-                    className="w-full mt-2 p-[14px] border border-dark-linebase bg-dark-form rounded-lg focus:ring-0 focus:outline-none"
-                  />
+                  <label htmlFor="cardholdername">
+                    CVV
+                    <input
+                      type="password"
+                      placeholder="&#9679;&#9679;&#9679;"
+                      className="w-full mt-2 p-[14px] border border-dark-linebase bg-dark-form rounded-lg focus:ring-0 focus:outline-none"
+                    />
+                  </label>
                 </div>
               </div>
             </div>
           </div>
           <div className="w-full flex gap-4">
-            <button className="w-1/2 py-[14px] border border-primary rounded-lg text-primary font-semibold">
+            <button
+              className="w-1/2 py-[14px] border border-primary rounded-lg text-primary font-semibold"
+              type="button"
+              aria-label="button"
+            >
               Cancle
             </button>
-            <button className="w-1/2 py-[14px] bg-primary border border-primary rounded-lg text-white font-semibold ">
+            <button
+              type="submit"
+              aria-label="button"
+              className="w-1/2 py-[14px] bg-primary border border-primary rounded-lg text-white font-semibold"
+            >
               Confirm payment
             </button>
           </div>

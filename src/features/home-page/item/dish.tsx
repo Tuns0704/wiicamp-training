@@ -22,12 +22,14 @@ function CardFoodItem({ item }: CardItemProps) {
     <div className="flex h-full max-h-72 w-full relative flex-col gap-4 items-center  before:content-[''] before:w-full before:bg-dark-bg2 before:h-5/6 before:-bottom-0 before:absolute before:rounded-2xl mb-3">
       <div className="group  relative">
         <img className="size-[132px] z-10" src={item.image} alt={item.name} />
-        <div
+        <button
           onClick={() => handleAddToCart()}
           className="hidden group-hover:flex hover:cursor-pointer group-hover:items-center group-hover:justify-center absolute size-[132px] rounded-full bg-primary top-0 text-white"
+          aria-label="Add to cart"
+          type="button"
         >
           <PlusIcon />
-        </div>
+        </button>
       </div>
       <div className="w-full h-full text-sm flex flex-col justify-between items-center px-6 z-10">
         <div className="w-full h-full justify-between flex flex-col items-center">

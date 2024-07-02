@@ -22,8 +22,18 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
     "paths": {
-      "@": ["./src"]
+      "@/*": ["./src/*", "./dist/*", ""],
+      "@/lib/*": ["./src/lib/*"],
+      "@/features/*": ["./src/features/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/helpers/*": ["./src/helpers/*"],
+      "@/constants/*": ["./src/constants/*"],
+      "@/stores/*": ["./src/stores/*"],
+      "@/types/*": ["./src/types/*"],
+      "@/routes/*": ["./src/routes/*"],
+      "@/container/*": ["./src/container/*"]
     }
   },
   "include": [

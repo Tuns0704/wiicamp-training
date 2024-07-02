@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import dishes from '../../constants/dishes';
+import { ShoppingCart } from 'lucide-react';
+import { useMediaQuery } from 'usehooks-ts';
+import dishes from '@/constants/dishes';
 import Header from './header';
 import Carts from './carts';
 import ListDishes from './list-dishes';
-import { Button } from '../../components/ui/button';
-import { ShoppingCart } from 'lucide-react';
-import { useMediaQuery } from 'usehooks-ts';
+import { Button } from '@/components/ui/button';
 
 function HomePage() {
   const [searchParams] = useSearchParams();

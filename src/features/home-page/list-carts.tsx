@@ -1,5 +1,5 @@
-import EmptyCartIcon from '../../components/icons/empty-cart';
-import { ICartItem } from '../../types/cart-item';
+import EmptyCartIcon from '@/components/icons/empty-cart';
+import { ICartItem } from '@/types/cart-item';
 import CardCartItem from './item/cart';
 
 interface IListCartProps {
@@ -10,8 +10,8 @@ function ListCart({ cart }: IListCartProps) {
   return (
     <div className="flex flex-col gap-6 overflow-y-scroll scrollbar-none">
       {cart.length > 0 ? (
-        cart.map((item, index) => {
-          return <CardCartItem key={`${item.name}${index}`} item={item} />;
+        cart.map((item) => {
+          return <CardCartItem key={`${item.id}`} item={item} />;
         })
       ) : (
         <div className="w-full text-primary min-h-64 flex flex-col justify-center items-center">

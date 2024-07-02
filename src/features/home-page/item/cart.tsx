@@ -52,6 +52,8 @@ function CardCartItem({ item }: CartItemProps) {
         <button
           onClick={() => handleRemoveFromCart(item.id)}
           className="w-1/6 text-primary border border-primary rounded-lg flex justify-center items-center"
+          aria-label="button"
+          type="button"
         >
           <TrashIcon />
         </button>

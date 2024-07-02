@@ -1,5 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import { MenuIcon, X } from 'lucide-react';
+import { useMediaQuery } from 'usehooks-ts';
 import {
   Sheet,
   SheetClose,
@@ -9,10 +10,9 @@ import {
   SheetTitle,
   SheetTrigger,
 } from './ui/sheet';
-import routes from '../constants/app-routes';
+import routes from '@/constants/app-routes';
 
 import LogoutIcon from './icons/logout';
-import { useMediaQuery } from 'usehooks-ts';
 
 function RenderSideItem() {
   return (
@@ -28,8 +28,8 @@ function RenderSideItem() {
                   >
                     {isActive && (
                       <>
-                        <div className="absolute size-4 -top-4 right-0 sm:right-2 bg-dark-linebase before:content-[''] before:size-4 before:bg-dark-bg2 before:w-full before:h-full before:absolute before:rounded-br-full"></div>
-                        <div className="absolute size-4 -bottom-4 right-0 sm:right-2 bg-dark-linebase before:content-[''] before:size-3 before:bg-dark-bg2 before:w-full before:h-full before:absolute before:rounded-tr-full"></div>
+                        <div className="absolute size-4 -top-4 right-0 sm:right-2 bg-dark-linebase before:content-[''] before:size-4 before:bg-dark-bg2 before:w-full before:h-full before:absolute before:rounded-br-full" />
+                        <div className="absolute size-4 -bottom-4 right-0 sm:right-2 bg-dark-linebase before:content-[''] before:size-3 before:bg-dark-bg2 before:w-full before:h-full before:absolute before:rounded-tr-full" />
                       </>
                     )}
                     <div
@@ -73,12 +73,12 @@ function Sidebar() {
             </div>
           </SheetTrigger>
           <SheetContent
-            side={'left'}
+            side="left"
             className="bg-dark-bg2 p-0 border-none w-fit"
           >
             <SheetHeader>
-              <SheetTitle className="hidden"></SheetTitle>
-              <SheetDescription className="hidden"></SheetDescription>
+              <SheetTitle className="hidden" />
+              <SheetDescription className="hidden" />
             </SheetHeader>
             <div className="flex flex-col h-full items-center">
               <SheetClose className="my-4 p-2 size-10 text-primary rounded-xl bg-primary/25">

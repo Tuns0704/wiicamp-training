@@ -1,4 +1,4 @@
-import { IDishItem } from '../../types/dish-item';
+import { IDishItem } from '@/types/dish-item';
 import CardFoodItem from './item/dish';
 
 interface IListDishesProps {
@@ -10,8 +10,8 @@ function ListDishes({ dishes }: IListDishesProps) {
     <div className="overflow-y-scroll pb-8 scrollbar-none">
       {dishes.length > 0 ? (
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 base:grid-cols-3 gap-5 sm:gap-5 lg:gap-x-7 2xl:grid-cols-4 lg:gap-y-6 ">
-          {dishes.map((item, index) => (
-            <CardFoodItem key={item.name + index} item={item} />
+          {dishes.map((item) => (
+            <CardFoodItem key={item.id} item={item} />
           ))}
         </div>
       ) : (
