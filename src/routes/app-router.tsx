@@ -38,6 +38,12 @@ function AppRouter() {
               )}
             </>
           ))}
+          <Route path="setting">
+            <Route
+              index
+              element={<Navigate to="products-management" replace />}
+            />
+          </Route>
           <Route path="not-found" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/not-found" replace />} />
         </Route>
