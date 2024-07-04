@@ -18,25 +18,17 @@ function AppRouter() {
       <Routes>
         <Route path="/" element={<AppContainer />}>
           {routes.map((item) => (
-            <>
-              {item.children ? (
-                <Route key={item.path} path={item.path} element={item.element}>
-                  {item.children.map((child) => (
+            <Route key={item.path} path={item.path} element={item.element}>
+              {item.children
+                ? item.children.map((child) => (
                     <Route
                       key={child.path}
                       path={child.path}
                       element={child.element}
                     />
-                  ))}
-                </Route>
-              ) : (
-                <Route
-                  key={item.name}
-                  path={item.path}
-                  element={item.element}
-                />
-              )}
-            </>
+                  ))
+                : null}
+            </Route>
           ))}
           <Route path="setting">
             <Route
