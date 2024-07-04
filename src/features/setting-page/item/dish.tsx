@@ -10,24 +10,24 @@ function DishCard({ item }: DishCardProps) {
   return (
     <div
       key={item.id}
-      className="min-h-[299px] flex flex-col items-center justify-between pt-6 border border-dark-linebase rounded-lg"
+      className="flex h-[15rem] flex-col items-center justify-between rounded-lg border border-dark-linebase pt-6 sm:h-[18.688rem]"
     >
       <img
-        src={item.image}
+        src={`/${item.image}`}
         alt={item.name}
-        className="size-[127px] rounded-lg"
+        className="size-20 rounded-lg sm:size-[7.938rem]"
       />
-      <div className="mb-4 flex flex-col justify-center items-center gap-2">
-        <p className="text-white base:max-w-[144px] text-center text-sm font-medium mt-2">
+      <div className="mb-4 flex flex-col items-center justify-center gap-2">
+        <p className="mt-2 text-center text-sm font-medium text-white base:max-w-[9rem]">
           {item.name}
         </p>
-        <p className="text-textlight text-sm">
+        <p className="text-sm text-textlight">
           {formatCurrency(item.price)} • {item.available} Bowls
         </p>
       </div>
-      <div className="min-h-[52px] flex items-center justify-center gap-2 bg-primary/25 w-full rounded-b-lg text-primary">
+      <div className="flex min-h-[3.25rem] w-full items-center justify-center gap-2 rounded-b-lg bg-primary/25 text-primary">
         <EditIcon />
-        <p className="text-sm font-semibold ">Edit</p>
+        <p className="text-sm font-semibold">Edit</p>
       </div>
     </div>
   );

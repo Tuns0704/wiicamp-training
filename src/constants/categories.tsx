@@ -1,4 +1,4 @@
-const meals = [
+const categories = [
   {
     name: 'All',
     value: 'All',
@@ -29,4 +29,4 @@ const meals = [
   },
 ];
 
-export default meals;
+export default categories;

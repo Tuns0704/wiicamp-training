@@ -57,11 +57,11 @@ function Sidebar() {
   const isMobile = useMediaQuery('(max-width: 640px)');
 
   return (
-    <aside className="fixed left-0 top-0 z-50 flex w-screen flex-row-reverse items-center justify-between overflow-hidden bg-dark-bg2 px-4 sm:h-screen sm:w-[104px] sm:flex-col sm:rounded-r-2xl sm:px-0">
+    <aside className="fixed left-0 top-0 z-50 flex w-screen flex-row-reverse items-center justify-between overflow-hidden bg-dark-bg2 px-4 sm:h-screen sm:w-[6.5rem] sm:flex-col sm:rounded-r-2xl sm:px-0">
       <Link to="/" className="w-12 sm:mr-2 sm:py-6">
         <img
           className="rounded-xl bg-primary/25 p-2"
-          src="assets/home-logo.svg"
+          src="/assets/home-logo.svg"
           alt=""
         />
       </Link>

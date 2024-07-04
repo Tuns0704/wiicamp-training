@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { mountStoreDevtool } from 'simple-zustand-devtools';
 import StoreName from './store-name';
-import { ICartItem } from '../types/cart-item';
+import { ICartItem } from '@/types/cart-item';
 
 interface CartState {
   cart: ICartItem[];
@@ -18,7 +18,7 @@ export const useCartStore = create<CartState>((set) => {
     addToCart: (item) => {
       set((state) => {
         const existingItem = state.cart.findIndex(
-          (cartItem) => cartItem.id === item.id
+          (cartItem) => cartItem.id === item.id,
         );
         if (existingItem !== -1) {
           const updatedCart = [...state.cart];

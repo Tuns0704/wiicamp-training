@@ -15,14 +15,14 @@ function CardCartItem({ item }: CartItemProps) {
   return (
     <div className="">
       <div className="flex items-center justify-between gap-4">
-        <div className="w-5/6 flex justify-between">
+        <div className="flex w-5/6 justify-between">
           <div className="flex gap-2">
             <img className="size-12" src={item.image} alt="" />
             <div>
               <p className="font-medium text-white">
                 {formatForLongText(item.name)}
               </p>
-              <p className="font-medium text-sm text-textlight">
+              <p className="text-sm font-medium text-textlight">
                 $ {item.price}
               </p>
             </div>
@@ -30,7 +30,7 @@ function CardCartItem({ item }: CartItemProps) {
           <div className="flex">
             <input
               type="number"
-              className="bg-dark-base border focus:right-0 focus:outline-none border-dark-linebase text-center size-12 rounded-lg"
+              className="size-12 rounded-lg border border-dark-linebase bg-dark-base text-center focus:right-0 focus:outline-none"
               value={item.quantity}
               placeholder="0"
               readOnly
@@ -43,15 +43,15 @@ function CardCartItem({ item }: CartItemProps) {
           </p>
         </div>
       </div>
-      <div className="flex mt-[10px] gap-4">
+      <div className="mt-[0.625rem] flex gap-4">
         <input
           type="text"
-          className="w-5/6 py-[14px] rounded-lg border-2 focus:right-0 focus:outline-none border-dark-linebase px-2 bg-dark-base"
+          className="w-5/6 rounded-lg border-2 border-dark-linebase bg-dark-base px-2 py-[0.875rem] focus:right-0 focus:outline-none"
           placeholder="Order Note..."
         />
         <button
           onClick={() => handleRemoveFromCart(item.id)}
-          className="w-1/6 text-primary border border-primary rounded-lg flex justify-center items-center"
+          className="flex w-1/6 items-center justify-center rounded-lg border border-primary text-primary"
           aria-label="button"
           type="button"
         >

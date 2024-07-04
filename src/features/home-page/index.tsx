@@ -23,17 +23,17 @@ function HomePage() {
 
     if (mealOption) {
       filteredDishes = filteredDishes.filter(
-        (dish) => dish.mealOption === mealOption
+        (dish) => dish.mealOption === mealOption,
       );
     }
     if (typeService) {
       filteredDishes = filteredDishes.filter(
-        (dish) => dish.typeService === typeService
+        (dish) => dish.typeService === typeService,
       );
     }
     if (name) {
       filteredDishes = filteredDishes.filter((dish) =>
-        dish.name.toLowerCase().includes(name.toLowerCase())
+        dish.name.toLowerCase().includes(name.toLowerCase()),
       );
     }
     setFoodDishes(filteredDishes);
@@ -44,9 +44,9 @@ function HomePage() {
   };
 
   return (
-    <div className="relative flex flex-col lg:flex-row justify-between lg:max-h-screen">
+    <div className="relative flex flex-col justify-between lg:max-h-screen lg:flex-row">
       <div
-        className={`${smallDeviceView && isCartOpen ? 'hidden' : ''} lg:min-w-[35vw] base:min-w-[681px] xl:min-w-[60vw] w-full sm:max-h-screen max-h-[calc(100vh-90px)] flex flex-col px-6 sm:mt-6`}
+        className={`${smallDeviceView && isCartOpen ? 'hidden' : ''} flex max-h-[calc(100vh-5.625rem)] w-full flex-col px-6 sm:mt-6 sm:max-h-screen lg:min-w-[35vw] base:min-w-[42.563rem] xl:min-w-[60vw]`}
       >
         <Header />
         <ListDishes dishes={foodDishes} />
@@ -54,10 +54,10 @@ function HomePage() {
       <div className={`${smallDeviceView && !isCartOpen ? 'hidden' : ''}`}>
         <Carts />
       </div>
-      <div className="bg-primary rounded-l-full w-20 fixed z-[50] bottom-[50%] -right-8 hover:-right-0 lg:hidden">
+      <div className="fixed -right-8 bottom-[50%] z-[50] w-20 rounded-l-full bg-primary hover:-right-0 lg:hidden">
         <Button
           onClick={() => handleToggleCartButton()}
-          className="rounded-l-full border-none size-16 bg-primary text-white active:bg-primary focus:bg-primary"
+          className="size-16 rounded-l-full border-none bg-primary text-white focus:bg-primary active:bg-primary"
         >
           <ShoppingCart />
         </Button>

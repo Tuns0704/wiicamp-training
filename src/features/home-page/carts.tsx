@@ -12,7 +12,7 @@ function Carts() {
   const [listCart, setListCart] = useState(cart);
   const [totalCart, setTotalCart] = useState('');
   const [selectedServiceOption, setSelectedServiceOption] = useState(
-    service[0].value
+    service[0].value,
   );
 
   const handCalculateTotalcart = useCallback(() => {
@@ -32,7 +32,7 @@ function Carts() {
     let filteredCart = cart;
     if (selectedServiceOption !== 'All') {
       filteredCart = cart.filter(
-        (item) => item.typeService === selectedServiceOption
+        (item) => item.typeService === selectedServiceOption,
       );
     }
 
@@ -40,8 +40,8 @@ function Carts() {
   }, [cart, handCalculateTotalcart, selectedServiceOption]);
 
   return (
-    <div className="lg:min-w-[40vw] base:min-w-[35vw] xl:min-w-[30vw] flex flex-col gap-6 p-6 w-full text-white bg-dark-bg2 min-h-[calc(100vh-200px)] max-h-[calc(100vh-95px)] sm:min-h-screen sm:max-h-screen">
-      <h1 className="font-semibold text-xl">Order #13242</h1>
+    <div className="flex max-h-[calc(100vh-5.938rem)] min-h-[calc(100vh-12.5rem)] w-full flex-col gap-6 bg-dark-bg2 p-6 text-white sm:max-h-screen sm:min-h-screen lg:min-w-[40vw] base:min-w-[35vw] xl:min-w-[30vw]">
+      <h1 className="text-xl font-semibold">Order #13242</h1>
       <div className="flex gap-2">
         {service.map((item) => (
           <button
@@ -49,7 +49,7 @@ function Carts() {
             key={item.value}
             type="button"
             aria-label="select service"
-            className={`py-[7px] hover:cursor-pointer  font-medium rounded-lg border  px-3  ${item.value === selectedServiceOption ? 'border-primary bg-primary text-white' : 'border border-dark-linebase text-primary'}`}
+            className={`rounded-lg border px-3 py-[0.438rem] font-medium hover:cursor-pointer ${item.value === selectedServiceOption ? 'border-primary bg-primary text-white' : 'border border-dark-linebase text-primary'}`}
           >
             {item.name}
           </button>
@@ -58,8 +58,8 @@ function Carts() {
       <div className="flex flex-col gap-6 overflow-y-scroll scrollbar-none">
         <div className="flex w-full justify-between">
           <p className="w-4/6 font-semibold">Item</p>
-          <p className="font-semibold w-1/6 text-center">Qty</p>
-          <p className="font-semibold w-1/6 text-end">Price</p>
+          <p className="w-1/6 text-center font-semibold">Qty</p>
+          <p className="w-1/6 text-end font-semibold">Price</p>
         </div>
         <div className="flex flex-col gap-6 overflow-y-scroll scrollbar-none">
           <RenderListCartItem cart={listCart} />
@@ -70,14 +70,14 @@ function Carts() {
           <p className="text-textlight">Discount</p>
           <p className="font-medium">$0</p>
         </div>
-        <div className="flex  justify-between">
+        <div className="flex justify-between">
           <p className="text-textlight">Sub total</p>
           <p className="font-medium">{totalCart}</p>
         </div>
-        <div className="w-full mt-[42px]">
+        <div className="mt-[2.625rem] w-full">
           <Sheet>
             <SheetTrigger asChild>
-              <Button className="w-full h-full py-[14px]">
+              <Button className="h-full w-full py-[0.875rem]">
                 Continue to Payment
               </Button>
             </SheetTrigger>

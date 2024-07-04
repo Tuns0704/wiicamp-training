@@ -24,27 +24,27 @@ function ModalPayment({ totalCart }: ModalPaymentProps) {
   return (
     <SheetContent
       side="right"
-      className="bg-dark-bg2 p-0 border-none w-full sm:min-w-[80vw] lg:w-[60vw]"
+      className="w-full border-none bg-dark-bg2 p-0 sm:min-w-[80vw] lg:w-[60vw]"
     >
       <SheetHeader>
         <SheetTitle className="hidden" />
         <SheetDescription className="hidden" />
       </SheetHeader>
-      <div className="flex flex-col h-screen overflow-y-scroll md:flex-row min-w-screen">
-        <div className="w-full md:w-1/2 flex flex-col justify-between text-white p-6 h-screen border-r border-dark-linebase">
+      <div className="min-w-screen flex h-screen flex-col overflow-y-scroll md:flex-row">
+        <div className="flex h-screen w-full flex-col justify-between border-r border-dark-linebase p-6 text-white md:w-1/2">
           <div>
-            <SheetClose className="text-white rounded-xl mb-4">
+            <SheetClose className="mb-4 rounded-xl text-white">
               <BackIcon />
             </SheetClose>
-            <div className="flex justify-between pb-6 border-b border-dark-linebase items-center">
+            <div className="flex items-center justify-between border-b border-dark-linebase pb-6">
               <div>
-                <h1 className="text-white text-[28px] leading-8 mb-2 font-semibold">
+                <h1 className="mb-2 text-[5.625rem] font-semibold leading-8 text-white">
                   Confirmation
                 </h1>
                 <p className="text-textlight">Orders #13242</p>
               </div>
               <button
-                className="bg-primary text-white p-[14px] rounded-lg"
+                className="rounded-lg bg-primary p-[0.875rem] text-white"
                 type="button"
                 aria-label="plus meal"
               >
@@ -52,27 +52,27 @@ function ModalPayment({ totalCart }: ModalPaymentProps) {
               </button>
             </div>
           </div>
-          <div className="flex h-full overflow-scroll scrollbar-none pt-6 flex-col gap-4">
+          <div className="flex h-full flex-col gap-4 overflow-scroll pt-6 scrollbar-none">
             <RenderListCartItem cart={cart} />
           </div>
-          <div className="pt-5 border-t border-dark-linebase pb-[53px]">
+          <div className="border-t border-dark-linebase pb-[3.313rem] pt-5">
             <div className="mb-4 flex justify-between">
               <p className="text-textlight">Discount</p>
               <p className="font-medium">$0</p>
             </div>
-            <div className="flex  justify-between">
+            <div className="flex justify-between">
               <p className="text-textlight">Sub total</p>
               <p className="font-medium">{totalCart}</p>
             </div>
           </div>
         </div>
-        <div className="w-full md:w-1/2 flex flex-col justify-between p-6 text-white gap-6 min-h-screen border-r border-dark-linebase">
+        <div className="flex min-h-screen w-full flex-col justify-between gap-6 border-r border-dark-linebase p-6 text-white md:w-1/2">
           <div>
-            <div className=" text-transparent  rounded-xl mb-4">
+            <div className="mb-4 rounded-xl text-transparent">
               <BackIcon />
             </div>
-            <div className="pb-6 border-b border-dark-linebase">
-              <h1 className="text-white text-[28px] leading-8 mb-2 font-semibold">
+            <div className="border-b border-dark-linebase pb-6">
+              <h1 className="mb-2 text-[1.75rem] font-semibold leading-8 text-white">
                 Payment
               </h1>
               <p className="text-textlight">3 payment method available</p>
@@ -89,19 +89,19 @@ function ModalPayment({ totalCart }: ModalPaymentProps) {
                   }}
                   type="button"
                   aria-label="select payment method"
-                  className={` relative flex flex-col rounded-lg border py-[10px] min-w-[101px] justify-center items-center ${item.name === paymentMethod ? 'border-textlight text-white' : 'border-dark-linebase text-textlight'}`}
+                  className={`relative flex w-[6.313rem] flex-col items-center justify-center rounded-lg border py-[0.625rem] ${item.name === paymentMethod ? 'border-textlight text-white' : 'border-dark-linebase text-textlight'}`}
                 >
-                  <div className="w-fit h-fit">{item.icon}</div>
-                  <p className="font-medium text-sm">{item.name}</p>
+                  <div className="h-fit w-fit">{item.icon}</div>
+                  <p className="text-sm font-medium">{item.name}</p>
                   {item.name === paymentMethod && (
-                    <div className="absolute top-2 right-2">
+                    <div className="absolute right-2 top-2">
                       <CheckMarkCircleIcon />
                     </div>
                   )}
                 </button>
               ))}
             </div>
-            <div className="w-full flex mt-4 flex-col gap-4">
+            <div className="mt-4 flex w-full flex-col gap-4">
               <div>
                 <label htmlFor="cardholdername">
                   Cardholder Name
@@ -109,7 +109,7 @@ function ModalPayment({ totalCart }: ModalPaymentProps) {
                     id="cardholdername"
                     type="text"
                     placeholder="Levi Ackerman"
-                    className="w-full mt-2 p-[14px] border border-dark-linebase bg-dark-form rounded-lg focus:ring-0 focus:outline-none"
+                    className="mt-2 w-full rounded-lg border border-dark-linebase bg-dark-form p-[0.875rem] focus:outline-none focus:ring-0"
                   />
                 </label>
               </div>
@@ -120,7 +120,7 @@ function ModalPayment({ totalCart }: ModalPaymentProps) {
                     id="cardnumber"
                     placeholder="2564 1421 0897 1244"
                     type="text"
-                    className="w-full mt-2 p-[14px] border border-dark-linebase bg-dark-form rounded-lg focus:ring-0 focus:outline-none"
+                    className="mt-2 w-full rounded-lg border border-dark-linebase bg-dark-form p-[0.875rem] focus:outline-none focus:ring-0"
                   />
                 </label>
               </div>
@@ -132,7 +132,7 @@ function ModalPayment({ totalCart }: ModalPaymentProps) {
                       id="exp"
                       type="text"
                       placeholder="02/2022"
-                      className="w-full mt-2 p-[14px] border border-dark-linebase bg-dark-form rounded-lg focus:ring-0 focus:outline-none"
+                      className="mt-2 w-full rounded-lg border border-dark-linebase bg-dark-form p-[0.875rem] focus:outline-none focus:ring-0"
                     />
                   </label>
                 </div>
@@ -142,16 +142,16 @@ function ModalPayment({ totalCart }: ModalPaymentProps) {
                     <input
                       type="password"
                       placeholder="&#9679;&#9679;&#9679;"
-                      className="w-full mt-2 p-[14px] border border-dark-linebase bg-dark-form rounded-lg focus:ring-0 focus:outline-none"
+                      className="mt-2 w-full rounded-lg border border-dark-linebase bg-dark-form p-[0.875rem] focus:outline-none focus:ring-0"
                     />
                   </label>
                 </div>
               </div>
             </div>
           </div>
-          <div className="w-full flex gap-4">
+          <div className="flex w-full gap-4">
             <button
-              className="w-1/2 py-[14px] border border-primary rounded-lg text-primary font-semibold"
+              className="w-1/2 rounded-lg border border-primary py-[0.875rem] font-semibold text-primary"
               type="button"
               aria-label="button"
             >
@@ -160,7 +160,7 @@ function ModalPayment({ totalCart }: ModalPaymentProps) {
             <button
               type="submit"
               aria-label="button"
-              className="w-1/2 py-[14px] bg-primary border border-primary rounded-lg text-white font-semibold"
+              className="w-1/2 rounded-lg border border-primary bg-primary py-[0.875rem] font-semibold text-white"
             >
               Confirm payment
             </button>

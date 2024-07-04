@@ -18,7 +18,25 @@ function AppRouter() {
       <Routes>
         <Route path="/" element={<AppContainer />}>
           {routes.map((item) => (
-            <Route key={item.name} path={item.path} element={item.element} />
+            <>
+              {item.children ? (
+                <Route key={item.path} path={item.path} element={item.element}>
+                  {item.children.map((child) => (
+                    <Route
+                      key={child.path}
+                      path={child.path}
+                      element={child.element}
+                    />
+                  ))}
+                </Route>
+              ) : (
+                <Route
+                  key={item.name}
+                  path={item.path}
+                  element={item.element}
+                />
+              )}
+            </>
           ))}
           <Route path="not-found" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/not-found" replace />} />

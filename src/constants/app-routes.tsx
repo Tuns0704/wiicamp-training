@@ -5,6 +5,7 @@ import HomeIcon from '@/components/icons/home';
 import MessageIcon from '@/components/icons/message';
 import NotificationIcon from '@/components/icons/notification';
 import SettingIcon from '@/components/icons/setting';
+import ProductsManagement from '@/features/setting-page/contents/product-management';
 
 const HomePage = lazy(() => import('@/features/home-page'));
 const SettingPage = lazy(() => import('@/features/setting-page'));
@@ -45,6 +46,39 @@ const routes = [
     path: '/setting',
     element: <SettingPage />,
     icon: <SettingIcon />,
+    children: [
+      {
+        name: 'products-management',
+        path: '/setting/products-management',
+        element: <ProductsManagement />,
+      },
+      {
+        name: 'notifications',
+        path: '/setting/notifications',
+        element: <ProductsManagement />,
+      },
+      {
+        name: 'security',
+        path: '/setting/security',
+        element: <ProductsManagement />,
+      },
+      {
+        name: 'about-us',
+        path: '/setting/about-us',
+        element: <ProductsManagement />,
+      },
+      {
+        name: 'appereance',
+        index: true,
+        path: '/setting/appereance',
+        element: <ProductsManagement />,
+      },
+      {
+        name: 'your-restaurant',
+        path: '/setting/your-restaurant',
+        element: <ProductsManagement />,
+      },
+    ],
   },
 ];
 

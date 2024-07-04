@@ -19,26 +19,26 @@ function CardFoodItem({ item }: CardItemProps) {
     cartStoreActions.addToCart(itemInCart);
   };
   return (
-    <div className="flex h-full max-h-72 w-full relative flex-col gap-4 items-center  before:content-[''] before:w-full before:bg-dark-bg2 before:h-5/6 before:-bottom-0 before:absolute before:rounded-2xl mb-3">
-      <div className="group  relative">
-        <img className="size-[132px] z-10" src={item.image} alt={item.name} />
+    <div className="relative mb-3 flex h-full max-h-72 w-full flex-col items-center gap-4 before:absolute before:-bottom-0 before:h-5/6 before:w-full before:rounded-2xl before:bg-dark-bg2 before:content-['']">
+      <div className="group relative">
+        <img className="z-10 size-[8.25rem]" src={item.image} alt={item.name} />
         <button
           onClick={() => handleAddToCart()}
-          className="hidden group-hover:flex hover:cursor-pointer group-hover:items-center group-hover:justify-center absolute size-[132px] rounded-full bg-primary top-0 text-white"
+          className="absolute top-0 hidden size-[8.25rem] rounded-full bg-primary text-white group-hover:flex group-hover:items-center group-hover:justify-center hover:cursor-pointer"
           aria-label="Add to cart"
           type="button"
         >
           <PlusIcon />
         </button>
       </div>
-      <div className="w-full h-full text-sm flex flex-col justify-between items-center px-6 z-10">
-        <div className="w-full h-full justify-between flex flex-col items-center">
-          <h3 className="text-white w-full leading-5 font-medium text-center mb-2">
+      <div className="z-10 flex h-full w-full flex-col items-center justify-between px-6 text-sm">
+        <div className="flex h-full w-full flex-col items-center justify-between">
+          <h3 className="mb-2 w-full text-center font-medium leading-5 text-white">
             {item.name}
           </h3>
-          <p className="text-white mb-1">$ {item.price}</p>
+          <p className="mb-1 text-white">$ {item.price}</p>
         </div>
-        <p className="text-textlight mt-1 pb-4">
+        <p className="mt-1 pb-4 text-textlight">
           {item.available} Bowls available
         </p>
       </div>

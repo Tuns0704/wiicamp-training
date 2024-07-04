@@ -35,6 +35,7 @@ module.exports = {
         textgray: 'rgb(var(--text-gray) / <alpha-value>)',
       },
       screens: {
+        xs: '475px',
         base: '1194px',
         '2xl': '1400px',
       },

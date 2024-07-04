@@ -6,7 +6,7 @@ function AppContainer() {
   return (
     <div className="max-w-screen max-h-screen overflow-hidden bg-dark-bg1 sm:flex">
       <Sidebar />
-      <div className="h-full max-h-screen min-h-screen w-full pt-[88px] sm:ml-[104px] sm:pt-0">
+      <div className="h-full max-h-screen min-h-screen w-full pt-[5.5rem] sm:ml-[6.5rem] sm:pt-0">
         <Outlet />
       </div>
     </div>
