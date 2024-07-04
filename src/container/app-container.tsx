@@ -4,9 +4,9 @@ import Sidebar from '@/components/sidebar';
 
 function AppContainer() {
   return (
-    <div className=" sm:flex bg-dark-bg1 max-w-screen min-h-screen overflow-hidden">
+    <div className="max-w-screen max-h-screen overflow-hidden bg-dark-bg1 sm:flex">
       <Sidebar />
-      <div className="w-full h-full pt-[88px] max-h-screen sm:pt-0 sm:ml-[104px]">
+      <div className="h-full max-h-screen min-h-screen w-full pt-[88px] sm:ml-[104px] sm:pt-0">
         <Outlet />
       </div>
     </div>

@@ -10,21 +10,21 @@ import DishCard from './item/dish';
 function ProductsManagement() {
   const [mealOption, setMealOption] = useState(meals[0].value);
   return (
-    <div className="w-full md:max-h-[calc(100vh-550px)] sm:min-h-[calc(100vh-262px)] flex flex-col">
+    <div className="flex h-full w-full flex-col">
       <div className="flex items-center justify-between">
-        <h1 className="text-white base:text-xl font-semibold base:leading-8">
+        <h1 className="font-semibold text-white base:text-xl base:leading-8">
           Products Management
         </h1>
-        <Button className="base:min-w-[178px] h-12 rounded-lg flex gap-2 py-[14px] border bg-dark-bg2 border-dark-linebase">
+        <Button className="flex h-12 gap-2 rounded-lg border border-dark-linebase bg-dark-bg2 py-[14px] base:min-w-[178px]">
           <OptionIcon />
           Manage Categories
         </Button>
       </div>
-      <div className="w-full border-b border-dark-linebase min-h-[33px] overflow-x-scroll scrollbar-none mt-6">
+      <div className="mt-6 min-h-[33px] w-full overflow-x-scroll border-b border-dark-linebase scrollbar-none">
         <Categories mealOption={mealOption} setMealOption={setMealOption} />
       </div>
-      <div className="base:min-h-[450px] base:max-h-[450px] xl:max-h-[500px] max-h-[300px] grid md:grid-cols-2 base:grid-cols-3 xl:grid-cols-4 gap-4 mt-[23px] overflow-y-scroll scrollbar-none">
-        <div className="min-h-[299px] w-full flex flex-col justify-center items-center gap-2 border border-dashed rounded-lg border-primary text-primary">
+      <div className="mt-4 grid h-full gap-4 overflow-y-scroll scrollbar-none md:grid-cols-2 base:mt-[23px] base:grid-cols-3 xl:grid-cols-4">
+        <div className="flex max-h-[299px] min-h-[299px] w-full flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-primary text-primary">
           <PlusIcon className="size-10" />
           <p className="text-base font-medium">Add new dishes</p>
         </div>
@@ -32,11 +32,11 @@ function ProductsManagement() {
           <DishCard key={item.id} item={item} />
         ))}
       </div>
-      <div className="flex gap-2 pt-[49px] mt-auto">
-        <Button className="lg:min-w-[172px] min-h-[48px] bg-dark-bg2 border-primary border rounded-lg text-primary focus:text-white">
+      <div className="flex h-fit items-end gap-2 pt-5 md:pt-[55px]">
+        <Button className="min-h-[48px] rounded-lg border border-primary bg-dark-bg2 text-primary focus:text-white lg:min-w-[172px]">
           Discard Changes
         </Button>
-        <Button className="lg:min-w-[172px] min-h-[48px]">Save Changes</Button>
+        <Button className="min-h-[48px] lg:min-w-[172px]">Save Changes</Button>
       </div>
     </div>
   );
