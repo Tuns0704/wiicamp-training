@@ -16,7 +16,7 @@ function SettingCard({ item, isActive }: SettingCardProps) {
       key={item.id}
     >
       {isActive && (
-        <div className="absolute right-0 h-[2.5rem] w-1 rounded-full bg-primary"></div>
+        <div className="absolute right-0 h-[2.5rem] w-1 rounded-full bg-primary" />
       )}
       <div
         className={`mt-[0.125rem] w-4 ${

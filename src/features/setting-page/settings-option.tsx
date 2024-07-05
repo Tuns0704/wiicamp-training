@@ -1,6 +1,8 @@
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useMediaQuery } from 'usehooks-ts';
 import setting from '@/constants/setting';
 import SettingCard from './item/setting';
-import { NavLink, useNavigate } from 'react-router-dom';
 import {
   Select,
   SelectContent,
@@ -8,8 +10,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useState } from 'react';
-import { useMediaQuery } from 'usehooks-ts';
 
 function SettingOption() {
   const [selectedSetting, setSelectedSetting] = useState(

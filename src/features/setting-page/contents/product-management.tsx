@@ -25,7 +25,7 @@ function ProductsManagement() {
       <div className="mt-6 min-h-[2.063rem] w-full overflow-x-scroll border-b border-dark-linebase scrollbar-none">
         <Categories categoryOption={category} setCategoryOption={setCategory} />
       </div>
-      <div className="xs:grid-cols-2 mt-4 grid h-full gap-4 overflow-y-scroll scrollbar-none base:mt-[1.438rem] base:grid-cols-3 xl:grid-cols-4">
+      <div className="mt-4 grid h-full gap-4 overflow-y-scroll scrollbar-none xs:grid-cols-2 base:mt-[1.438rem] base:grid-cols-3 xl:grid-cols-4">
         <Dialog>
           <DialogTrigger asChild>
             <div className="flex h-[15rem] w-full flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-primary text-primary sm:h-[18.688rem]">
@@ -40,11 +40,11 @@ function ProductsManagement() {
           <DishCard key={item.id} item={item} />
         ))}
       </div>
-      <div className="flex h-fit items-end gap-2 pt-5 md:pt-[3.438rem]">
-        <Button className="h-[3rem] w-1/2 rounded-lg border border-primary bg-dark-bg2 text-xs text-primary focus:text-white sm:w-[10.75rem] sm:text-sm">
+      <div className="flex h-fit items-end gap-2 pt-3 md:pt-[3.438rem] base:gap-2">
+        <Button className="w-1/2 rounded-lg border border-primary bg-dark-bg2 text-xs text-primary focus:text-white sm:w-[10.75rem] sm:text-sm base:h-[3rem] base:p-3">
           Discard Changes
         </Button>
-        <Button className="min-h-[3rem] w-1/2 text-xs sm:w-[10.75rem] sm:text-sm">
+        <Button className="w-1/2 text-xs sm:w-[10.75rem] sm:text-sm base:min-h-[3rem]">
           Save Changes
         </Button>
       </div>

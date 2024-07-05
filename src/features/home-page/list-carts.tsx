@@ -14,9 +14,9 @@ function ListCart({ cart }: IListCartProps) {
           return <CardCartItem key={`${item.id}`} item={item} />;
         })
       ) : (
-        <div className="w-full text-primary min-h-64 flex flex-col justify-center items-center">
+        <div className="flex min-h-64 w-full flex-col items-center justify-center text-primary">
           <EmptyCartIcon />
-          <p className="font-medium text-3xl">Cart is empty</p>
+          <p className="text-3xl font-medium">Cart is empty</p>
         </div>
       )}
     </div>

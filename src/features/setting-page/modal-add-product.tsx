@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   DialogContent,
@@ -15,7 +16,6 @@ import {
 } from '@/components/ui/select';
 import categories from '@/constants/categories';
 import service from '@/constants/service';
-import { useState } from 'react';
 
 function ModalAddProduct() {
   const [product, setProduct] = useState({
@@ -41,12 +41,12 @@ function ModalAddProduct() {
   };
 
   return (
-    <DialogContent className="w-fit border-none bg-dark-bg2 text-white">
+    <DialogContent className="w-[95vw] border-none bg-dark-bg2 text-white">
       <DialogHeader>
         <DialogTitle>Add new dishes</DialogTitle>
-        <DialogDescription></DialogDescription>
+        <DialogDescription />
       </DialogHeader>
-      <div className="grid gap-4 py-4">
+      <div className="grid gap-3 py-3">
         <input
           name="name"
           className="rounded-lg border border-dark-linebase bg-dark-bg2 p-3 text-white focus:outline-none"
