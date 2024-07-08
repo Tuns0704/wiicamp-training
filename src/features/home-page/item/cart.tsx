@@ -1,8 +1,8 @@
+import formatForLongText from '@/helpers/format-for-long-text';
 import TrashIcon from '../../../components/icons/trash';
 import { cartStoreActions } from '../../../stores/cart';
-import formatForLongText from '../../../helpers/format-for-long-text';
-import formatCurrency from '../../../helpers/format-currency';
 import { ICartItem } from '../../../types/cart-item';
+import formatCurrency from '@/helpers/format-currency';
 
 interface CartItemProps {
   item: ICartItem;

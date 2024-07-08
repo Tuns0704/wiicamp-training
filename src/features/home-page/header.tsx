@@ -1,7 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDebounceCallback } from 'usehooks-ts';
-import getFormatCurrentDate from '../../helpers/get-format-current-date';
 import SearchIcon from '../../components/icons/search';
 import {
   Select,
@@ -13,11 +12,12 @@ import {
 import meals from '../../constants/categories';
 import service from '../../constants/service';
 import Categories from '@/components/categories';
+import getFormatCurrentDate from '@/helpers/get-format-current-date';
 
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [category, setCategory] = useState(
-    searchParams.get('mealOption') || meals[0].value,
+    searchParams.get('category') || meals[0].value,
   );
   const [name, setName] = useState(searchParams.get('name') || '');
   const [typeService, setTypeService] = useState(
@@ -27,7 +27,7 @@ function Header() {
   useEffect(() => {
     const params = new URLSearchParams();
     if (category && category !== 'All') params.set('category', category);
-    if (name) params.set('name', name);
+    if (name) params.set('name_like', name);
     if (typeService && typeService !== 'All')
       params.set('typeService', typeService);
     setSearchParams(params);

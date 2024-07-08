@@ -20,7 +20,7 @@ function SettingOption() {
   const device = useMediaQuery('(max-width: 640px)');
 
   return (
-    <>
+    <div>
       {device ? (
         <Select
           value={selectedSetting}
@@ -53,7 +53,7 @@ function SettingOption() {
           })}
         </div>
       )}
-    </>
+    </div>
   );
 }
 

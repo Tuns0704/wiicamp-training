@@ -19,7 +19,7 @@ interface ModalPaymentProps {
 
 function ModalPayment({ totalCart }: ModalPaymentProps) {
   const { cart } = useCartStore();
-  const [paymentMethod, setPaymentMethod] = useState('Credit Card');
+  const [paymentMethod, setPaymentMethod] = useState<string>('Credit Card');
 
   return (
     <SheetContent

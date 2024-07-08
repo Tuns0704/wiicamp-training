@@ -14,6 +14,7 @@ function CardFoodItem({ item }: CardItemProps) {
       price: item.price,
       typeService: item.typeService,
       quantity: 1,
+      category: item.category,
       image: item.image,
     };
     cartStoreActions.addToCart(itemInCart);

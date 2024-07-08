@@ -16,15 +16,20 @@ import {
 } from '@/components/ui/select';
 import categories from '@/constants/categories';
 import service from '@/constants/service';
+import DishesServices from '@/services/dishes';
 
-function ModalAddProduct() {
+type ModalAddProductProps = {
+  reload: () => void;
+};
+
+function ModalAddProduct({ reload }: ModalAddProductProps) {
   const [product, setProduct] = useState({
     name: '',
     price: 0,
-    description: '',
     image: '',
     category: '',
-    service: '',
+    typeService: '',
+    available: 0,
   });
 
   const handleChangeCategory = (value: string) => {
@@ -32,12 +37,25 @@ function ModalAddProduct() {
   };
 
   const handleChangeService = (value: string) => {
-    setProduct((prev) => ({ ...prev, service: value }));
+    setProduct((prev) => ({ ...prev, typeService: value }));
   };
 
   const handleChangeProduct = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setProduct((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async () => {
+    const body = {
+      ...product,
+      price: Number(product.price),
+      available: Number(product.available),
+    };
+
+    const response = await DishesServices.addDish(body);
+    if (response.status === 201) {
+      reload();
+    }
   };
 
   return (
@@ -60,21 +78,19 @@ function ModalAddProduct() {
             name="price"
             className="w-full rounded-lg border border-dark-linebase bg-dark-bg2 p-3 pr-6 text-white focus:outline-none"
             type="number"
+            onChange={handleChangeProduct}
+            value={product.price}
             placeholder="Price"
           />
           <div className="absolute right-3 top-3 text-textlight">$</div>
         </div>
         <input
-          name="description"
-          className="w-full rounded-lg border border-dark-linebase bg-dark-bg2 p-3 text-white focus:outline-none"
-          type="text"
-          placeholder="Description"
-        />
-        <input
           name="image"
+          onChange={handleChangeProduct}
+          value={product.image}
           className="w-full rounded-lg border border-dark-linebase bg-dark-bg2 p-3 text-white focus:outline-none"
           type="text"
-          placeholder="Image URL"
+          placeholder="Image path"
         />
         <div className="flex gap-4">
           <Select
@@ -95,7 +111,10 @@ function ModalAddProduct() {
               ))}
             </SelectContent>
           </Select>
-          <Select value={product.service} onValueChange={handleChangeService}>
+          <Select
+            value={product.typeService}
+            onValueChange={handleChangeService}
+          >
             <SelectTrigger className="w-1/2 border-2 border-dark-linebase bg-dark-bg2 py-3 font-medium text-white focus:ring-0">
               <SelectValue placeholder="Service" />
             </SelectTrigger>
@@ -112,12 +131,17 @@ function ModalAddProduct() {
         </div>
         <input
           className="w-full rounded-lg border border-dark-linebase bg-dark-bg2 p-3 text-white focus:outline-none"
-          type="text"
+          type="number"
+          value={product.available}
+          name="available"
+          onChange={handleChangeProduct}
           placeholder="Available"
         />
       </div>
       <DialogFooter>
-        <Button type="submit">Save changes</Button>
+        <Button type="submit" onClick={handleSubmit}>
+          Save changes
+        </Button>
       </DialogFooter>
     </DialogContent>
   );

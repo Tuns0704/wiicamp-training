@@ -1,17 +1,18 @@
 import { useCallback, useEffect, useState } from 'react';
-import formatCurrency from '../../helpers/format-currency';
 import { useCartStore } from '../../stores/cart';
 import ModalPayment from './modal-payment';
 import RenderListCartItem from './list-carts';
 import service from '../../constants/service';
 import { Button } from '../../components/ui/button';
 import { Sheet, SheetTrigger } from '../../components/ui/sheet';
+import { ICartItem } from '@/types/cart-item';
+import formatCurrency from '@/helpers/format-currency';
 
 function Carts() {
   const { cart } = useCartStore();
-  const [listCart, setListCart] = useState(cart);
-  const [totalCart, setTotalCart] = useState('');
-  const [selectedServiceOption, setSelectedServiceOption] = useState(
+  const [listCart, setListCart] = useState<ICartItem[]>(cart);
+  const [totalCart, setTotalCart] = useState<string>('');
+  const [selectedServiceOption, setSelectedServiceOption] = useState<string>(
     service[0].value,
   );
 

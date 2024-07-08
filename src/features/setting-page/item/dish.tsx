@@ -1,6 +1,6 @@
+import EditIcon from '@/components/icons/edit';
 import formatCurrency from '@/helpers/format-currency';
 import { IDishItem } from '@/types/dish-item';
-import EditIcon from '../../../components/icons/edit';
 
 interface DishCardProps {
   item: IDishItem;

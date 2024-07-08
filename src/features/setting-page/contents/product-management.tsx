@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { PlusIcon } from 'lucide-react';
+import { useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import OptionIcon from '../../../components/icons/option';
 import Categories from '@/components/categories';
@@ -8,9 +9,32 @@ import dishes from '@/constants/dishes';
 import DishCard from '../item/dish';
 import { Dialog, DialogTrigger } from '@/components/ui/dialog';
 import ModalAddProduct from '../modal-add-product';
+import { IDishItem } from '@/types/dish-item';
+import DishesServices from '@/services/dishes';
 
 function ProductsManagement() {
-  const [category, setCategory] = useState(meals[0].value);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [category, setCategory] = useState<string>(
+    searchParams.get('category') || meals[0].value,
+  );
+  const [products, setProduct] = useState<IDishItem[]>(dishes);
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (category && category !== 'All') params.set('category', category);
+    setSearchParams(params);
+  }, [category, setSearchParams]);
+
+  const getData = useCallback(async () => {
+    const response = await DishesServices.getAllDishes(searchParams);
+    if (response.status === 200) {
+      setProduct(response.data);
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
   return (
     <div className="flex h-full w-full flex-col">
       <div className="flex items-center justify-between">
@@ -28,15 +52,15 @@ function ProductsManagement() {
       <div className="mt-4 grid h-full gap-4 overflow-y-scroll scrollbar-none xs:grid-cols-2 base:mt-[1.438rem] base:grid-cols-3 xl:grid-cols-4">
         <Dialog>
           <DialogTrigger asChild>
-            <div className="flex h-[15rem] w-full flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-primary text-primary sm:h-[18.688rem]">
+            <div className="flex h-[15rem] w-full flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-primary text-primary hover:cursor-pointer sm:h-[18.688rem]">
               <PlusIcon className="size-10" />
               <p className="text-base font-medium">Add new dishes</p>
             </div>
           </DialogTrigger>
-          <ModalAddProduct />
+          <ModalAddProduct reload={getData} />
         </Dialog>
 
-        {dishes.map((item) => (
+        {products.map((item) => (
           <DishCard key={item.id} item={item} />
         ))}
       </div>

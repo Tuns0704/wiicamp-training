@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ShoppingCart } from 'lucide-react';
 import { useMediaQuery } from 'usehooks-ts';
@@ -7,37 +7,25 @@ import Header from './header';
 import Carts from './carts';
 import ListDishes from './list-dishes';
 import { Button } from '@/components/ui/button';
+import { IDishItem } from '@/types/dish-item';
+import DishesServices from '@/services/dishes';
 
 function HomePage() {
   const [searchParams] = useSearchParams();
-  const [foodDishes, setFoodDishes] = useState(dishes);
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [products, setProducts] = useState<IDishItem[]>(dishes);
+  const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
   const smallDeviceView = useMediaQuery('(max-width: 1024px)');
 
-  useEffect(() => {
-    const mealOption = searchParams.get('mealOption');
-    const typeService = searchParams.get('typeService');
-    const name = searchParams.get('name');
-
-    let filteredDishes = dishes;
-
-    if (mealOption) {
-      filteredDishes = filteredDishes.filter(
-        (dish) => dish.mealOption === mealOption,
-      );
+  const getData = useCallback(async () => {
+    const response = await DishesServices.getAllDishes(searchParams);
+    if (response.status === 200) {
+      setProducts(response.data);
     }
-    if (typeService) {
-      filteredDishes = filteredDishes.filter(
-        (dish) => dish.typeService === typeService,
-      );
-    }
-    if (name) {
-      filteredDishes = filteredDishes.filter((dish) =>
-        dish.name.toLowerCase().includes(name.toLowerCase()),
-      );
-    }
-    setFoodDishes(filteredDishes);
   }, [searchParams]);
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
 
   const handleToggleCartButton = () => {
     setIsCartOpen(!isCartOpen);
@@ -49,7 +37,7 @@ function HomePage() {
         className={`${smallDeviceView && isCartOpen ? 'hidden' : ''} flex max-h-[calc(100vh-5.625rem)] w-full flex-col px-6 sm:mt-6 sm:max-h-screen lg:min-w-[35vw] base:min-w-[42.563rem] xl:min-w-[60vw]`}
       >
         <Header />
-        <ListDishes dishes={foodDishes} />
+        <ListDishes dishes={products} />
       </div>
       <div className={`${smallDeviceView && !isCartOpen ? 'hidden' : ''}`}>
         <Carts />
