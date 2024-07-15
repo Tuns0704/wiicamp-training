@@ -25,7 +25,7 @@ function CardFoodItem({ item }: CardItemProps) {
         <img className="z-10 size-[8.25rem]" src={item.image} alt={item.name} />
         <button
           onClick={() => handleAddToCart()}
-          className="absolute top-0 hidden size-[8.25rem] rounded-full bg-primary text-white group-hover:flex group-hover:items-center group-hover:justify-center hover:cursor-pointer"
+          className="absolute top-0 hidden size-[8.25rem] rounded-full bg-primary bg-opacity-25 text-white group-hover:flex group-hover:items-center group-hover:justify-center hover:cursor-pointer"
           aria-label="Add to cart"
           type="button"
         >

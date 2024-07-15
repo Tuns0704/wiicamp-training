@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useMediaQuery } from 'usehooks-ts';
 import setting from '@/constants/setting';
-import SettingCard from './item/setting';
+import SettingCard from './items/setting-item';
 import {
   Select,
   SelectContent,

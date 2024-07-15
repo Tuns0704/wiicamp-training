@@ -7,7 +7,7 @@ interface IListDishesProps {
 
 function ListDishes({ dishes }: IListDishesProps) {
   return (
-    <div className="overflow-y-scroll pb-8 scrollbar-none">
+    <div className="h-[75vh] overflow-y-scroll pb-8 scrollbar-none">
       {dishes.length > 0 ? (
         <div className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-5 lg:gap-x-7 lg:gap-y-6 base:grid-cols-3 2xl:grid-cols-4">
           {dishes.map((item) => (

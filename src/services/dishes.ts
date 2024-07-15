@@ -17,6 +17,16 @@ const DishesServices = {
       .post(`/dishes`, body)
       .then((dish) => dish)
       .catch((err) => err),
+  updateDish: (id: number, body: Partial<IDishItem>) =>
+    instance
+      .put(`/dishes/${id}`, body)
+      .then((dish) => dish)
+      .catch((err) => err),
+  deleteDish: (id: number) =>
+    instance
+      .delete(`/dishes/${id}`)
+      .then((dish) => dish)
+      .catch((err) => err),
 };
 
 export default DishesServices;

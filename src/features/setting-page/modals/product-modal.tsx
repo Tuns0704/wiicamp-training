@@ -18,7 +18,6 @@ import {
 } from '@/components/ui/select';
 import categories from '@/constants/categories';
 import service from '@/constants/service';
-import DishesServices from '@/services/dishes';
 import {
   Form,
   FormControl,
@@ -28,18 +27,23 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { IDishItem } from '@/types/dish-item';
 
-type ModalAddProductProps = {
-  reload: () => void;
+type ModalProductProps = {
+  dish: IDishItem | null;
+  action: (data: Partial<IDishItem>) => void;
 };
 
 const formSchema = z.object({
   name: z.string().min(2, {
     message: 'Name dishes must be at least 2 characters.',
   }),
-  price: z.number().min(1, {
-    message: 'Price must be at least 2 characters.',
-  }),
+  price: z
+    .union([z.string(), z.number()])
+    .refine((value) => !Number.isNaN(parseFloat(value as string)), {
+      message: 'Price must be a valid number.',
+    })
+    .transform((value) => parseFloat(value as string)),
   image: z.string().min(2, {
     message: 'Image must be at least 2 characters.',
   }),
@@ -49,29 +53,41 @@ const formSchema = z.object({
   typeService: z.string().min(2, {
     message: 'Type service must select',
   }),
-  available: z.number().min(1, {
-    message: 'Available must be at least 1 characters.',
-  }),
+  available: z
+    .union([z.string(), z.number()])
+    .refine((value) => !Number.isNaN(parseInt(value as string, 10)), {
+      message: 'Available must be a valid number.',
+    })
+    .transform((value) => parseInt(value as string, 10)),
 });
 
-function ModalAddProduct({ reload }: ModalAddProductProps) {
+function ModalProduct({ dish, action }: ModalProductProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    mode: 'onSubmit',
     defaultValues: {
-      name: '',
-      price: 0,
-      image: '',
-      category: '',
-      typeService: '',
-      available: 0,
+      name: dish ? dish.name : '',
+      price: dish ? dish.price : 0,
+      image: dish ? dish.image : '',
+      category: dish ? dish.category : '',
+      typeService: dish ? dish.typeService : '',
+      available: dish ? dish.available : 0,
     },
   });
 
-  const handleSubmit = async (values: z.infer<typeof formSchema>) => {
-    const response = await DishesServices.addDish(values);
-    if (response.status === 201) {
-      reload();
+  const onChangeNumberValue = (
+    name: 'name' | 'price' | 'image' | 'category' | 'typeService' | 'available',
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const { value } = e.target;
+
+    if (value === '' || value.match(/^(\d*\.)?\d*$/)) {
+      form.setValue(name, value);
     }
+  };
+
+  const onSubmit = (data: z.infer<typeof formSchema>) => {
+    action(data);
   };
 
   return (
@@ -82,7 +98,7 @@ function ModalAddProduct({ reload }: ModalAddProductProps) {
       </DialogHeader>
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(handleSubmit)}
+          onSubmit={form.handleSubmit(onSubmit)}
           className="grid sm:gap-3 sm:py-3"
         >
           <FormField
@@ -112,13 +128,14 @@ function ModalAddProduct({ reload }: ModalAddProductProps) {
                 <FormControl>
                   <div className="relative">
                     <Input
-                      type="number"
+                      type="text"
+                      pattern="^[0-9]*[.,]?[0-9]*$"
+                      inputMode="decimal"
                       className="w-full rounded-lg border border-dark-linebase bg-dark-bg2 p-3 pr-6 text-white focus:outline-none"
                       {...field}
                       placeholder="Price"
                       onChange={(e) => {
-                        const value = parseFloat(e.target.value);
-                        field.onChange(isNaN(value) ? '' : value);
+                        onChangeNumberValue(field.name, e);
                       }}
                     />
                     <div className="absolute right-3 top-3 text-textlight">
@@ -152,17 +169,17 @@ function ModalAddProduct({ reload }: ModalAddProductProps) {
           <div className="flex gap-4">
             <FormField
               control={form.control}
-              name="category"
+              name="typeService"
               render={({ field }) => (
                 <FormItem className="w-1/2">
-                  <FormLabel>Category</FormLabel>
+                  <FormLabel>Service</FormLabel>
                   <FormControl>
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
                       <SelectTrigger className="border-2 border-dark-linebase bg-dark-bg2 py-3 font-medium text-white focus:ring-0">
-                        <SelectValue placeholder="Category" />
+                        <SelectValue placeholder="Service" />
                       </SelectTrigger>
                       <SelectContent className="z-[999] border border-dark-linebase bg-dark-bg2 font-medium text-white">
                         {service.map((item) => (
@@ -183,17 +200,17 @@ function ModalAddProduct({ reload }: ModalAddProductProps) {
             />
             <FormField
               control={form.control}
-              name="typeService"
+              name="category"
               render={({ field }) => (
                 <FormItem className="w-1/2">
-                  <FormLabel>Type Service</FormLabel>
+                  <FormLabel>Category</FormLabel>
                   <FormControl>
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
                       <SelectTrigger className="w-full border-2 border-dark-linebase bg-dark-bg2 py-3 font-medium text-white focus:ring-0">
-                        <SelectValue placeholder="Service" />
+                        <SelectValue placeholder="Category" />
                       </SelectTrigger>
                       <SelectContent className="z-[999] border border-dark-linebase bg-dark-bg2 font-medium text-white">
                         {categories.map((item) => (
@@ -221,13 +238,13 @@ function ModalAddProduct({ reload }: ModalAddProductProps) {
                 <FormLabel>Available</FormLabel>
                 <FormControl>
                   <Input
-                    type="number"
+                    type="text"
+                    pattern="^[0-9]*[.,]?[0-9]*$"
                     className="w-full rounded-lg border border-dark-linebase bg-dark-bg2 p-3 pr-6 text-white focus:outline-none"
                     {...field}
                     placeholder="Available"
                     onChange={(e) => {
-                      const value = parseFloat(e.target.value);
-                      field.onChange(isNaN(value) ? '' : value);
+                      onChangeNumberValue(field.name, e);
                     }}
                   />
                 </FormControl>
@@ -246,4 +263,4 @@ function ModalAddProduct({ reload }: ModalAddProductProps) {
   );
 }
 
-export default ModalAddProduct;
+export default ModalProduct;

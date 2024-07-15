@@ -6,14 +6,16 @@ import OptionIcon from '../../../components/icons/option';
 import Categories from '@/components/categories';
 import meals from '@/constants/categories';
 import dishes from '@/constants/dishes';
-import DishCard from '../item/dish';
+import DishCard from '../items/dish-item';
 import { Dialog, DialogTrigger } from '@/components/ui/dialog';
-import ModalAddProduct from '../modal-add-product';
 import { IDishItem } from '@/types/dish-item';
 import DishesServices from '@/services/dishes';
+import ModalProduct from '../modals/product-modal';
+import { useToast } from '@/components/ui/use-toast';
 
 function ProductsManagement() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [isOpenAddModal, setIsOpenAddModal] = useState<boolean>(false);
   const [category, setCategory] = useState<string>(
     searchParams.get('category') || meals[0].value,
   );
@@ -25,16 +27,42 @@ function ProductsManagement() {
     setSearchParams(params);
   }, [category, setSearchParams]);
 
+  const { getAllDishes, addDish } = DishesServices;
+
+  const toggleAddModal = () => {
+    setIsOpenAddModal(!isOpenAddModal);
+  };
+
   const getData = useCallback(async () => {
-    const response = await DishesServices.getAllDishes(searchParams);
+    const response = await getAllDishes(searchParams);
     if (response.status === 200) {
       setProduct(response.data);
     }
-  }, [searchParams]);
+  }, [getAllDishes, searchParams]);
 
   useEffect(() => {
     getData();
   }, [getData]);
+
+  const { toast } = useToast();
+
+  const handleAddDish = async (body: Partial<IDishItem>) => {
+    const response = await addDish(body);
+    if (response.status === 201) {
+      toggleAddModal();
+      getData();
+      toast({
+        title: 'Success',
+        description: 'Add new dishes successfully',
+      });
+    } else {
+      toast({
+        title: 'Error',
+        description: 'Something went wrong',
+      });
+    }
+  };
+
   return (
     <div className="flex h-full w-full flex-col">
       <div className="flex items-center justify-between">
@@ -50,18 +78,18 @@ function ProductsManagement() {
         <Categories categoryOption={category} setCategoryOption={setCategory} />
       </div>
       <div className="mt-4 grid h-full gap-4 overflow-y-scroll scrollbar-none xs:grid-cols-2 base:mt-[1.438rem] base:grid-cols-3 xl:grid-cols-4">
-        <Dialog>
+        <Dialog open={isOpenAddModal} onOpenChange={setIsOpenAddModal}>
           <DialogTrigger asChild>
             <div className="flex h-[15rem] w-full flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-primary text-primary hover:cursor-pointer sm:h-[18.688rem]">
               <PlusIcon className="size-10" />
               <p className="text-base font-medium">Add new dishes</p>
             </div>
           </DialogTrigger>
-          <ModalAddProduct reload={getData} />
+          <ModalProduct dish={null} action={handleAddDish} />
         </Dialog>
 
         {products.map((item) => (
-          <DishCard key={item.id} item={item} />
+          <DishCard reload={getData} key={item.id} item={item} />
         ))}
       </div>
       <div className="flex h-fit items-end gap-2 pt-3 md:pt-[3.438rem] base:gap-2">
