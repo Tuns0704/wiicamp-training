@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react';
 import categories from '@/constants/categories';
 
 interface CategoriesProps {
@@ -6,12 +7,18 @@ interface CategoriesProps {
 }
 
 function Categories({ categoryOption, setCategoryOption }: CategoriesProps) {
+  const handleSelectCategory = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    setCategoryOption(event.currentTarget.value);
+  };
+
   return (
     <div className="flex max-h-[2.063rem] gap-8">
       {categories.map((item) => (
         <button
-          onClick={() => setCategoryOption(item.value)}
-          key={`${item.value}`}
+          onClick={handleSelectCategory}
+          key={item.value}
+          value={item.value}
           type="button"
           aria-label="select meal"
           className={`relative max-h-[2.063rem] min-w-fit pb-5 text-sm font-semibold transition-all duration-300 ease-linear after:absolute after:-bottom-[0rem] after:left-0 after:h-[0.125rem] after:w-2/3 after:rounded after:transition-all after:duration-300 after:ease-linear after:content-[""] hover:cursor-pointer sm:after:-bottom-[0rem] ${categoryOption === item.value ? 'text-primary after:bg-primary' : 'text-white after:bg-transparent'}`}
