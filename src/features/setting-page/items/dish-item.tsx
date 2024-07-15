@@ -55,7 +55,7 @@ function DishCard({ item, reload }: DishCardProps) {
       </div>
       <Dialog open={isOpenEditModal} onOpenChange={setIsOpenEditModal}>
         <DialogTrigger asChild>
-          <div className="flex min-h-[3.25rem] w-full items-center justify-center gap-2 rounded-b-lg bg-primary/25 text-primary">
+          <div className="flex min-h-[3.25rem] w-full items-center justify-center gap-2 rounded-b-lg bg-primary/25 text-primary hover:cursor-pointer">
             <EditIcon />
             <p className="text-sm font-semibold">Edit</p>
           </div>
