@@ -27,6 +27,10 @@ function DishCard({ item, reload }: DishCardProps) {
     if (response.status === 200) {
       reload();
       toggleEditModal();
+      toast({
+        title: 'Success',
+        description: 'Update dishes successfully',
+      });
     } else {
       toast({
         title: 'Error',
