@@ -33,12 +33,12 @@ function HomePage() {
 
   return (
     <div className="relative flex flex-col justify-between lg:max-h-screen lg:flex-row">
-      <div
-        className={`${smallDeviceView && isCartOpen ? 'hidden' : ''} flex max-h-[calc(100vh-5.625rem)] w-full flex-col px-6 sm:mt-6 sm:max-h-screen lg:min-w-[35vw] base:min-w-[42.563rem] xl:min-w-[60vw]`}
-      >
-        <Header />
-        <ListDishes dishes={products} />
-      </div>
+      {!isCartOpen && (
+        <div className="lg-flex hidden max-h-[calc(100vh-5.625rem)] w-full flex-col px-6 sm:mt-6 sm:max-h-screen lg:min-w-[35vw] base:min-w-[42.563rem] xl:min-w-[60vw]">
+          <Header />
+          <ListDishes dishes={products} />
+        </div>
+      )}
       <div className={`${smallDeviceView && !isCartOpen ? 'hidden' : ''}`}>
         <Carts />
       </div>
