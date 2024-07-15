@@ -42,7 +42,7 @@ function DishCard({ item, reload }: DishCardProps) {
   return (
     <div
       key={item.id}
-      className="flex h-[15rem] flex-col items-center justify-between rounded-lg border border-dark-linebase pt-6 sm:h-[18.688rem]"
+      className="group flex h-[15rem] flex-col items-center justify-between rounded-lg border border-dark-linebase pt-6 hover:border-dashed hover:border-primary sm:h-[18.688rem]"
     >
       <img
         src={`/${item.image}`}
@@ -59,7 +59,7 @@ function DishCard({ item, reload }: DishCardProps) {
       </div>
       <Dialog open={isOpenEditModal} onOpenChange={setIsOpenEditModal}>
         <DialogTrigger asChild>
-          <div className="flex min-h-[3.25rem] w-full items-center justify-center gap-2 rounded-b-lg bg-primary/25 text-primary hover:cursor-pointer hover:bg-primary/45">
+          <div className="flex min-h-[3.25rem] w-full items-center justify-center gap-2 rounded-b-lg bg-primary/25 text-primary group-hover:bg-primary/45 hover:cursor-pointer">
             <EditIcon />
             <p className="text-sm font-semibold">Edit</p>
           </div>
