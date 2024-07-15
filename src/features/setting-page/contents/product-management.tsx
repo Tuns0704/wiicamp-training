@@ -80,7 +80,7 @@ function ProductsManagement() {
       <div className="mt-4 grid h-full gap-4 overflow-y-scroll scrollbar-none xs:grid-cols-2 base:mt-[1.438rem] base:grid-cols-3 xl:grid-cols-4">
         <Dialog open={isOpenAddModal} onOpenChange={setIsOpenAddModal}>
           <DialogTrigger asChild>
-            <div className="flex h-[15rem] w-full flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-primary text-primary hover:cursor-pointer sm:h-[18.688rem]">
+            <div className="flex h-[15rem] w-full flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-primary text-primary hover:cursor-pointer hover:bg-primary/45 hover:text-white sm:h-[18.688rem]">
               <PlusIcon className="size-10" />
               <p className="text-base font-medium">Add new dishes</p>
             </div>
