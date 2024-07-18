@@ -5,6 +5,8 @@ import routes from '@/constants/app-routes';
 import AppContainer from '@/container/app-container';
 import NotFound from '@/features/404-not-found-page';
 import Loading from '@/components/loading';
+import Login from '@/features/log-in';
+import Register from '@/features/register';
 
 function AppRouter() {
   return (
@@ -37,6 +39,8 @@ function AppRouter() {
             />
           </Route>
           <Route path="not-found" element={<NotFound />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
           <Route path="*" element={<Navigate to="/not-found" replace />} />
         </Route>
       </Routes>

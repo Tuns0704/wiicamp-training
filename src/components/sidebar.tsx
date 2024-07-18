@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
-import { MenuIcon, X } from 'lucide-react';
+import { MenuIcon, X, LogIn, UserPlus2 } from 'lucide-react';
 import { useMediaQuery } from 'usehooks-ts';
 import {
   Sheet,
@@ -13,8 +13,23 @@ import {
 import routes from '@/constants/app-routes';
 
 import LogoutIcon from './icons/logout';
+import AuthService from '@/services/auth';
+import { useAuthStore } from '@/stores/auth';
+import { toast } from './ui/use-toast';
 
 function RenderSideItem() {
+  const { user, setUser } = useAuthStore();
+
+  const handleLogout = async () => {
+    const response = await AuthService.logout();
+    if (response.status === 200) {
+      setUser(null);
+      toast({
+        title: 'Logout',
+        description: 'Logout successfully',
+      });
+    }
+  };
   return (
     <>
       <ul className="block h-fit w-full">
@@ -45,9 +60,25 @@ function RenderSideItem() {
         })}
       </ul>
       <div className="my-6 flex justify-center sm:mr-2 sm:mt-auto">
-        <div className="flex items-center justify-center gap-3 font-bold text-primary sm:p-5">
-          <LogoutIcon />
-        </div>
+        {user ? (
+          <button
+            type="button"
+            aria-label="Logout"
+            onClick={handleLogout}
+            className="flex items-center justify-center gap-3 font-bold text-primary sm:p-5"
+          >
+            <LogoutIcon />
+          </button>
+        ) : (
+          <div className="flex flex-col items-center gap-4 text-primary">
+            <Link to="/login">
+              <LogIn className="size-10 rounded-xl bg-primary/25 p-2 text-primary" />
+            </Link>
+            <Link to="/register">
+              <UserPlus2 className="size-10 rounded-xl bg-primary/25 p-2 text-primary" />
+            </Link>
+          </div>
+        )}
       </div>
     </>
   );
